@@ -37,3 +37,15 @@
 | Integración de Apache POI para autogenerar la planificación en Excel | Backend | Sprint 7 | 3 | 7h |
 | Integración de Docx4j para autogenerar el análisis de impacto en Word | Backend | Sprint 7 | 4 | 7h |
 | Recepción asíncrona de archivos Blob en Angular y lógica de descarga | Frontend | Sprint 7 | 5 | 4h |
+| Gestión de variables de entorno seguras | DevOps | Sprint 8 | 1 | 2h |
+| Creación del `Dockerfile` optimizado para el backend Spring Boot | DevOps | Sprint 8 | 2 | 3h |
+| Creación del `Dockerfile` optimizado para el frontend Angular | DevOps | Sprint 8 | 3 | 3h |
+| Creación del `archivo compose definiendo redes y volúmenes | DevOps | Sprint 8 | 4 | 4h |
+| Configuración de Nginx como proxy inverso (enrutamiento `/api` y estáticos) | DevOps | Sprint 8 | 5 | 6h |
+| Creación de workflows en GitHub Actions para integración continua | DevOps | Sprint 9 | 1 | 5h |
+| Configuración de tests automáticos dentro del pipeline de CI | DevOps | Sprint 9 | 2 | 3h |
+| Revisión estática de calidad de código con SonarQube | QA | Sprint 9 | 3 | 3h |
+| Configuración de CD para publicar imagen en un Docker hub | DevOps | Sprint 9 | 4 | 4h |
+| Ejecución de pruebas de carga al endpoint de generación de documentos | Testing | Sprint 9 | 5 | 4h |
+| Verificaciones de usabilidad (UX) cruzadas en diferentes navegadores | QA | Sprint 10| 1 | 4h |
+| Comentado exhaustivo del código faltante (JavaDoc/JSDoc) | Documentación | Sprint 10| 2 | 4h |
