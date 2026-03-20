@@ -22,3 +22,18 @@
 | Creación de consultas SQL complejas para el cálculo | Base de Datos | Sprint 4 | 3 | 5h |
 | Desarrollo de pruebas unitarias (JUnit/Mockito) para el algoritmo | Testing | Sprint 4 | 4 | 5h |
 | Generación de archivo OpenAPI/Swagger y colección Postman | Documentación | Sprint 4 | 5 | 3h |
+| Inicialización del proyecto Angular y configuración de TypeScript estricto | Frontend | Sprint 5 | 1 | 3h |
+| Configuración de preprocesadores (SASS/SCSS) en la arquitectura frontend | Frontend | Sprint 5 | 2 | 2h |
+| Aplicación de la guía de estilos (Figma) a los componentes | Frontend | Sprint 5 | 3 | 5h |
+| Maquetación del layout principal y navegación (responsive) | Frontend | Sprint 5 | 4 | 6h |
+| Auditoría de contraste y adaptación a accesibilidad WCAG AA | Frontend | Sprint 5 | 5 | 4h |
+| Desarrollo del formulario reactivo para catalogar el impacto técnico | Frontend | Sprint 6 | 1 | 6h |
+| Implementación de validaciones personalizadas en los inputs | Frontend | Sprint 6 | 2 | 4h |
+| Captura de eventos de usuario para el cálculo en tiempo real | Frontend | Sprint 6 | 3 | 3h |
+| Manipulación del DOM para renderizar el árbol de arquitectura | Frontend | Sprint 6 | 4 | 6h |
+| Manejo de estados de carga | Frontend | Sprint 6 | 5 | 3h |
+| Desarrollo del cliente HTTP para obtener datos de la API de Redmine | Backend | Sprint 7 | 1 | 6h |
+| Implementación de RxJS/HttpClient en Angular para consumir la API propia | Frontend | Sprint 7 | 2 | 6h |
+| Integración de Apache POI para autogenerar la planificación en Excel | Backend | Sprint 7 | 3 | 7h |
+| Integración de Docx4j para autogenerar el análisis de impacto en Word | Backend | Sprint 7 | 4 | 7h |
+| Recepción asíncrona de archivos Blob en Angular y lógica de descarga | Frontend | Sprint 7 | 5 | 4h |
