@@ -7,8 +7,9 @@ import com.estimplytics.backend.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO, UserUpdateDTO> {
 
+    @Override
     public UserResponseDTO toResponseDTO(User user) {
         if (user == null) {
             return null;
@@ -22,6 +23,7 @@ public class UserMapper {
                 .build();
     }
 
+    @Override
     public User toEntity(UserRequestDTO requestDTO) {
         if (requestDTO == null) {
             return null;
@@ -34,6 +36,7 @@ public class UserMapper {
                 .build();
     }
 
+    @Override
     public void updateEntityFromDTO(UserUpdateDTO updateDTO, User user) {
         if (updateDTO == null || user == null) {
             return;
