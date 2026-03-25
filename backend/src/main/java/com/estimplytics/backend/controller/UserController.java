@@ -1,4 +1,61 @@
 package com.estimplytics.backend.controller;
 
-public class UserController {
+import com.estimplytics.backend.dto.UserRequestDTO;
+import com.estimplytics.backend.dto.UserResponseDTO;
+import com.estimplytics.backend.dto.UserUpdateDTO;
+import com.estimplytics.backend.service.IUserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import com.estimplytics.backend.exception.UserNotFoundException;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+public class UserController implements IUserController {
+
+    private final IUserService userService;
+
+    public UserController(IUserService userService) {
+        this.userService = userService;
+    }
+
+    @Override
+    public ResponseEntity<List<UserResponseDTO>> getAll() {
+        return ResponseEntity.ok(userService.findAll());
+    }
+
+    @Override
+    public ResponseEntity<UserResponseDTO> getById(UUID id) {
+        return userService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<UserResponseDTO> create(UserRequestDTO request) {
+        UserResponseDTO response = userService.create(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<UserResponseDTO> update(UUID id, UserUpdateDTO request) {
+        try {
+            UserResponseDTO response = userService.update(id, request);
+            return ResponseEntity.ok(response);
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> delete(UUID id) {
+        try {
+            userService.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
