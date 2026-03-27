@@ -2,6 +2,8 @@
 
 ## Diagrama entidad-relación de la base de datos
 
+![](./assets/diagrama-entidad-relacion.png)
+
 ## Diagrama de casos de uso
 
 ## Diagramas de flujo de procesos principales
