@@ -41,21 +41,13 @@ public class UserController implements IUserController {
 
     @Override
     public ResponseEntity<UserResponseDTO> update(UUID id, UserUpdateDTO request) {
-        try {
-            UserResponseDTO response = userService.update(id, request);
-            return ResponseEntity.ok(response);
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        UserResponseDTO response = userService.update(id, request);
+        return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<Void> delete(UUID id) {
-        try {
-            userService.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
