@@ -26,6 +26,48 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(status).body(createErrorBody(status, request, e, "User not found"));
     }
 
+    @ExceptionHandler(RequestNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleRequestNotFoundException(RequestNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Request not found"));
+    }
+
+    @ExceptionHandler(ImpactAnalysisNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleImpactAnalysisNotFoundException(ImpactAnalysisNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "ImpactAnalysis not found"));
+    }
+
+    @ExceptionHandler(ComponentNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleComponentNotFoundException(ComponentNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Component not found"));
+    }
+
+    @ExceptionHandler(ComponentAnalysisNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleComponentAnalysisNotFoundException(ComponentAnalysisNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "ComponentAnalysis not found"));
+    }
+
+    @ExceptionHandler(EstimationNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleEstimationNotFoundException(EstimationNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Estimation not found"));
+    }
+
+    @ExceptionHandler(EstimationHistoryNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleEstimationHistoryNotFoundException(EstimationHistoryNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "EstimationHistory not found"));
+    }
+
+    @ExceptionHandler(ImpactAnalysisHistoryNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleImpactAnalysisHistoryNotFoundException(ImpactAnalysisHistoryNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "ImpactAnalysisHistory not found"));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorDTO> handleValidationException(MethodArgumentNotValidException e, HttpServletRequest request) {
         List<String> errors = e.getBindingResult()
