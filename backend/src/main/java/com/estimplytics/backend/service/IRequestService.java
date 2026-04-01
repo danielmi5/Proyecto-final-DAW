@@ -1,0 +1,9 @@
+package com.estimplytics.backend.service;
+
+import com.estimplytics.backend.dto.RequestRequestDTO;
+import com.estimplytics.backend.dto.RequestResponseDTO;
+import com.estimplytics.backend.dto.RequestUpdateDTO;
+import java.util.UUID;
+
+public interface IRequestService extends ICrudService<RequestRequestDTO, RequestResponseDTO, RequestUpdateDTO, UUID> {
+}

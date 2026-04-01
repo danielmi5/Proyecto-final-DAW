@@ -1,0 +1,51 @@
+package com.estimplytics.backend.controller;
+
+import com.estimplytics.backend.dto.EstimationRequestDTO;
+import com.estimplytics.backend.dto.EstimationResponseDTO;
+import com.estimplytics.backend.dto.EstimationUpdateDTO;
+import com.estimplytics.backend.service.IEstimationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+public class EstimationController implements IEstimationController {
+
+    private final IEstimationService service;
+
+    public EstimationController(IEstimationService service) {
+        this.service = service;
+    }
+
+    @Override
+    public ResponseEntity<List<EstimationResponseDTO>> getAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
+    @Override
+    public ResponseEntity<EstimationResponseDTO> getById(UUID id) {
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<EstimationResponseDTO> create(EstimationRequestDTO request) {
+        EstimationResponseDTO response = service.create(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<EstimationResponseDTO> update(UUID id, EstimationUpdateDTO request) {
+        return ResponseEntity.ok(service.update(id, request));
+    }
+
+    @Override
+    public ResponseEntity<Void> delete(UUID id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}
