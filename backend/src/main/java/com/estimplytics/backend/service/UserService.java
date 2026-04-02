@@ -52,14 +52,14 @@ public class UserService implements IUserService {
         return userRepository.findById(id).map(user -> {
             userMapper.updateEntityFromDTO(request, user);
             return userMapper.toResponseDTO(userRepository.save(user));
-        }).orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
+        }).orElseThrow(() -> new UserNotFoundException("User not found with id %s".formatted(id)));
     }
 
     @Override
     @Transactional
     public void delete(UUID id) {
         if (!userRepository.existsById(id)) {
-            throw new UserNotFoundException("User not found with id " + id);
+            throw new UserNotFoundException("User not found with id %s".formatted(id));
         }
         userRepository.deleteById(id);
     }

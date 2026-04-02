@@ -4,6 +4,7 @@ import com.estimplytics.backend.dto.UserRequestDTO;
 import com.estimplytics.backend.dto.UserResponseDTO;
 import com.estimplytics.backend.dto.UserUpdateDTO;
 import com.estimplytics.backend.entity.User;
+import com.estimplytics.backend.entity.Role;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +19,7 @@ public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
-                .role(user.getRole())
+                .role(user.getRole() != null ? user.getRole().name() : null)
                 .createdAt(user.getCreatedAt())
                 .build();
     }
@@ -32,7 +33,7 @@ public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO
                 .name(requestDTO.getName())
                 .email(requestDTO.getEmail())
                 .passwordHash(requestDTO.getPassword())
-                .role(requestDTO.getRole())
+                .role(requestDTO.getRole() != null ? Role.valueOf(requestDTO.getRole()) : null)
                 .build();
     }
 
@@ -51,7 +52,7 @@ public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO
             user.setPasswordHash(updateDTO.getPassword());
         }
         if (updateDTO.getRole() != null) {
-            user.setRole(updateDTO.getRole());
+            user.setRole(Role.valueOf(updateDTO.getRole()));
         }
     }
 }
