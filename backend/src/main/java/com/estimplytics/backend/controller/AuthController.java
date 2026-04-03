@@ -5,11 +5,14 @@ import com.estimplytics.backend.dto.TokenResponseDTO;
 import com.estimplytics.backend.security.JwtService;
 import com.estimplytics.backend.security.TokenBlacklistService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,10 +34,15 @@ public class AuthController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<TokenResponseDTO> login(@RequestBody TokenRequestDTO request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
+    public ResponseEntity<TokenResponseDTO> login(@Valid @RequestBody TokenRequestDTO request) {
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            );
+        } catch (AuthenticationException e) {
+            throw new BadCredentialsException("Invalid email or password", e);
+        }
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String token = jwtService.generateToken(userDetails);
@@ -42,7 +50,7 @@ public class AuthController {
         return ResponseEntity.ok(TokenResponseDTO.builder()
                 .accessToken(token)
                 .tokenType("Bearer")
-                .expiresIn(7200L)
+                .expiresIn(jwtService.getAccessTokenSeconds())
                 .build());
     }
 
