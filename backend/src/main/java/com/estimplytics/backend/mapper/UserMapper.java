@@ -3,12 +3,19 @@ package com.estimplytics.backend.mapper;
 import com.estimplytics.backend.dto.UserRequestDTO;
 import com.estimplytics.backend.dto.UserResponseDTO;
 import com.estimplytics.backend.dto.UserUpdateDTO;
-import com.estimplytics.backend.entity.User;
 import com.estimplytics.backend.entity.Role;
+import com.estimplytics.backend.entity.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO, UserUpdateDTO> {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserMapper(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserResponseDTO toResponseDTO(User user) {
@@ -32,7 +39,7 @@ public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO
         return User.builder()
                 .name(requestDTO.getName())
                 .email(requestDTO.getEmail())
-                .passwordHash(requestDTO.getPassword())
+                .passwordHash(passwordEncoder.encode(requestDTO.getPassword()))
                 .role(requestDTO.getRole() != null ? Role.valueOf(requestDTO.getRole()) : null)
                 .build();
     }
@@ -49,7 +56,7 @@ public class UserMapper implements IMapper<User, UserRequestDTO, UserResponseDTO
             user.setEmail(updateDTO.getEmail());
         }
         if (updateDTO.getPassword() != null) {
-            user.setPasswordHash(updateDTO.getPassword());
+            user.setPasswordHash(passwordEncoder.encode(updateDTO.getPassword()));
         }
         if (updateDTO.getRole() != null) {
             user.setRole(Role.valueOf(updateDTO.getRole()));
