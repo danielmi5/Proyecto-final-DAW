@@ -1,5 +1,7 @@
 package com.estimplytics.backend.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ComponentRequestDTO {
+    @NotBlank
     private String name;
-    private String description;
+
+    @NotBlank
+    private String category;
+
+    @NotNull
+    private Boolean active;
 }

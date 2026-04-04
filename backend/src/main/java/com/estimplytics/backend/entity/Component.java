@@ -21,23 +21,17 @@ public class Component {
     @Column(length = 255, nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    @Column(length = 50, nullable = false)
+    private String category;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(nullable = false)
+    private Boolean active;
+
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
     }
 }

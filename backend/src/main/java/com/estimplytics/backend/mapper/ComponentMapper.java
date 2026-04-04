@@ -14,7 +14,8 @@ public class ComponentMapper implements IMapper<Component, ComponentRequestDTO, 
         if (dto == null) return null;
         return Component.builder()
                 .name(dto.getName())
-                .description(dto.getDescription())
+                .category(dto.getCategory())
+                .active(dto.getActive())
                 .build();
     }
 
@@ -24,9 +25,9 @@ public class ComponentMapper implements IMapper<Component, ComponentRequestDTO, 
         return ComponentResponseDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .description(entity.getDescription())
+                .category(entity.getCategory())
+                .active(entity.getActive())
                 .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
                 .build();
     }
 
@@ -36,8 +37,12 @@ public class ComponentMapper implements IMapper<Component, ComponentRequestDTO, 
         if (dto.getName() != null) {
             entity.setName(dto.getName());
         }
-        if (dto.getDescription() != null) {
-            entity.setDescription(dto.getDescription());
+        if (dto.getCategory() != null) {
+            entity.setCategory(dto.getCategory());
+        }
+
+        if (dto.getActive() != null){
+            entity.setActive(dto.getActive());
         }
     }
 }
