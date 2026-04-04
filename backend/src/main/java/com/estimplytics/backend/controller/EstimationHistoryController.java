@@ -7,8 +7,8 @@ import com.estimplytics.backend.service.IEstimationHistoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 public class EstimationHistoryController implements IEstimationHistoryController {
@@ -20,8 +20,8 @@ public class EstimationHistoryController implements IEstimationHistoryController
     }
 
     @Override
-    public ResponseEntity<List<EstimationHistoryResponseDTO>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<Page<EstimationHistoryResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @Override

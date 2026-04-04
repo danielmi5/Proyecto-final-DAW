@@ -7,13 +7,13 @@ import com.estimplytics.backend.entity.Request;
 import com.estimplytics.backend.exception.RequestNotFoundException;
 import com.estimplytics.backend.mapper.RequestMapper;
 import com.estimplytics.backend.repository.RequestRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class RequestService implements IRequestService {
@@ -27,10 +27,8 @@ public class RequestService implements IRequestService {
     }
 
     @Override
-    public List<RequestResponseDTO> findAll() {
-        return requestRepository.findAll().stream()
-                .map(requestMapper::toResponseDTO)
-                .collect(Collectors.toList());
+    public Page<RequestResponseDTO> findAll(Pageable pageable) {
+        return requestRepository.findAll(pageable).map(requestMapper::toResponseDTO);
     }
 
     @Override

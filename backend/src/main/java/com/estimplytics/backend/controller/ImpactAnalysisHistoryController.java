@@ -7,8 +7,8 @@ import com.estimplytics.backend.service.IImpactAnalysisHistoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 public class ImpactAnalysisHistoryController implements IImpactAnalysisHistoryController {
@@ -20,8 +20,8 @@ public class ImpactAnalysisHistoryController implements IImpactAnalysisHistoryCo
     }
 
     @Override
-    public ResponseEntity<List<ImpactAnalysisHistoryResponseDTO>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<Page<ImpactAnalysisHistoryResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @Override

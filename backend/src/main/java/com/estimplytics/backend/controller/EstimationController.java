@@ -7,8 +7,9 @@ import com.estimplytics.backend.service.IEstimationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +22,8 @@ public class EstimationController implements IEstimationController {
     }
 
     @Override
-    public ResponseEntity<List<EstimationResponseDTO>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<Page<EstimationResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @Override

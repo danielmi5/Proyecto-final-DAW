@@ -6,12 +6,12 @@ import com.estimplytics.backend.dto.EstimationHistoryUpdateDTO;
 import com.estimplytics.backend.entity.EstimationHistory;
 import com.estimplytics.backend.mapper.EstimationHistoryMapper;
 import com.estimplytics.backend.repository.EstimationHistoryRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class EstimationHistoryService implements IEstimationHistoryService {
@@ -25,10 +25,8 @@ public class EstimationHistoryService implements IEstimationHistoryService {
     }
 
     @Override
-    public List<EstimationHistoryResponseDTO> findAll() {
-        return repository.findAll().stream()
-                .map(mapper::toResponseDTO)
-                .collect(Collectors.toList());
+    public Page<EstimationHistoryResponseDTO> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::toResponseDTO);
     }
 
     @Override

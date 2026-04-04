@@ -7,8 +7,9 @@ import com.estimplytics.backend.service.IImpactAnalysisService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +22,8 @@ public class ImpactAnalysisController implements IImpactAnalysisController {
     }
 
     @Override
-    public ResponseEntity<List<ImpactAnalysisResponseDTO>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<Page<ImpactAnalysisResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @Override

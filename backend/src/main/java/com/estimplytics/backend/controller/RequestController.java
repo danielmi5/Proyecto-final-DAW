@@ -7,8 +7,9 @@ import com.estimplytics.backend.service.IRequestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +22,8 @@ public class RequestController implements IRequestController {
     }
 
     @Override
-    public ResponseEntity<List<RequestResponseDTO>> getAll() {
-        return ResponseEntity.ok(requestService.findAll());
+    public ResponseEntity<Page<RequestResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(requestService.findAll(pageable));
     }
 
     @Override

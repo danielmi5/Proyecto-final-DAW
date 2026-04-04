@@ -1,14 +1,14 @@
 package com.estimplytics.backend.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 public interface ICrudController<Request, Response, Update, ID> {
     
     @GetMapping
-    ResponseEntity<List<Response>> getAll();
+    ResponseEntity<Page<Response>> getAll(Pageable pageable);
     
     @GetMapping("/{id}")
     ResponseEntity<Response> getById(@PathVariable ID id);

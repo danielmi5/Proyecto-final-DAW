@@ -7,13 +7,13 @@ import com.estimplytics.backend.entity.Estimation;
 import com.estimplytics.backend.exception.EstimationNotFoundException;
 import com.estimplytics.backend.mapper.EstimationMapper;
 import com.estimplytics.backend.repository.EstimationRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class EstimationService implements IEstimationService {
@@ -27,10 +27,8 @@ public class EstimationService implements IEstimationService {
     }
 
     @Override
-    public List<EstimationResponseDTO> findAll() {
-        return repository.findAll().stream()
-                .map(mapper::toResponseDTO)
-                .collect(Collectors.toList());
+    public Page<EstimationResponseDTO> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::toResponseDTO);
     }
 
     @Override

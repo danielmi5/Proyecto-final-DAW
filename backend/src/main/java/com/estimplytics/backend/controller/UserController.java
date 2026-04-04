@@ -8,8 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import com.estimplytics.backend.exception.UserNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,8 +23,8 @@ public class UserController implements IUserController {
     }
 
     @Override
-    public ResponseEntity<List<UserResponseDTO>> getAll() {
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<Page<UserResponseDTO>> getAll(Pageable pageable) {
+        return ResponseEntity.ok(userService.findAll(pageable));
     }
 
     @Override

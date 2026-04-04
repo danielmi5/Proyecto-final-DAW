@@ -6,13 +6,13 @@ import com.estimplytics.backend.dto.UserUpdateDTO;
 import com.estimplytics.backend.entity.User;
 import com.estimplytics.backend.mapper.UserMapper;
 import com.estimplytics.backend.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import com.estimplytics.backend.exception.UserNotFoundException;
 
 @Service
@@ -27,10 +27,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<UserResponseDTO> findAll() {
-        return userRepository.findAll().stream()
-                .map(userMapper::toResponseDTO)
-                .collect(Collectors.toList());
+    public Page<UserResponseDTO> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable).map(userMapper::toResponseDTO);
     }
 
     @Override
