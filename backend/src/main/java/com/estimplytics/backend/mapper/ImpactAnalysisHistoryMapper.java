@@ -5,8 +5,6 @@ import com.estimplytics.backend.dto.ImpactAnalysisHistoryResponseDTO;
 import com.estimplytics.backend.dto.ImpactAnalysisHistoryUpdateDTO;
 import com.estimplytics.backend.entity.ImpactAnalysisHistory;
 import com.estimplytics.backend.entity.ImpactAnalysis;
-import com.estimplytics.backend.entity.Request;
-import com.estimplytics.backend.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,20 +20,18 @@ public class ImpactAnalysisHistoryMapper implements IMapper<ImpactAnalysisHistor
             analysis.setId(dto.getAnalysisId());
             entity.setAnalysis(analysis);
         }
-        
-        if (dto.getRequestId() != null) {
-            Request request = new Request();
-            request.setId(dto.getRequestId());
-            entity.setRequest(request);
+        if (dto.getFrozenVersion() != null) {
+            entity.setFrozenVersion(dto.getFrozenVersion());
         }
-
-        if (dto.getAnalystId() != null) {
-            User analyst = new User();
-            analyst.setId(dto.getAnalystId());
-            entity.setAnalyst(analyst);
+        if (dto.getSnapshotData() != null) {
+            entity.setSnapshotData(dto.getSnapshotData());
         }
-        
-        entity.setVersion(dto.getVersion());
+        if (dto.getComponentsSnapshot() != null) {
+            entity.setComponentsSnapshot(dto.getComponentsSnapshot());
+        }
+        if (dto.getModifiedAt() != null) {
+            entity.setModifiedAt(dto.getModifiedAt());
+        }
         
         return entity;
     }
@@ -46,18 +42,27 @@ public class ImpactAnalysisHistoryMapper implements IMapper<ImpactAnalysisHistor
         return ImpactAnalysisHistoryResponseDTO.builder()
                 .id(entity.getId())
                 .analysisId(entity.getAnalysis() != null ? entity.getAnalysis().getId() : null)
-                .requestId(entity.getRequest() != null ? entity.getRequest().getId() : null)
-                .analystId(entity.getAnalyst() != null ? entity.getAnalyst().getId() : null)
-                .version(entity.getVersion())
-                .createdAt(entity.getCreatedAt())
+                .frozenVersion(entity.getFrozenVersion())
+                .snapshotData(entity.getSnapshotData())
+                .componentsSnapshot(entity.getComponentsSnapshot())
+                .modifiedAt(entity.getModifiedAt())
                 .build();
     }
 
     @Override
     public void updateEntityFromDTO(ImpactAnalysisHistoryUpdateDTO dto, ImpactAnalysisHistory entity) {
         if (dto == null) return;
-        if (dto.getVersion() != null) {
-            entity.setVersion(dto.getVersion());
+        if (dto.getFrozenVersion() != null) {
+            entity.setFrozenVersion(dto.getFrozenVersion());
+        }
+        if (dto.getSnapshotData() != null) {
+            entity.setSnapshotData(dto.getSnapshotData());
+        }
+        if (dto.getComponentsSnapshot() != null) {
+            entity.setComponentsSnapshot(dto.getComponentsSnapshot());
+        }
+        if (dto.getModifiedAt() != null) {
+            entity.setModifiedAt(dto.getModifiedAt());
         }
     }
 }

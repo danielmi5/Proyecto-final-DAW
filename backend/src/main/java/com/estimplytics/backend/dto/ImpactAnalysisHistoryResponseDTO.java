@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -14,8 +16,8 @@ import java.util.UUID;
 public class ImpactAnalysisHistoryResponseDTO {
     private Long id;
     private UUID analysisId;
-    private UUID requestId;
-    private UUID analystId;
-    private String version;
-    private LocalDateTime createdAt;
+    private Integer frozenVersion;
+    private Map<String, Object> snapshotData;
+    private Map<String, Object> componentsSnapshot;
+    private LocalDateTime modifiedAt;
 }
