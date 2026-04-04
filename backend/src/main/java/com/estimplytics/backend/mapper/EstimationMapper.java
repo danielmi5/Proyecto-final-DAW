@@ -14,7 +14,17 @@ public class EstimationMapper implements IMapper<Estimation, EstimationRequestDT
     public Estimation toEntity(EstimationRequestDTO dto) {
         if (dto == null) return null;
         Estimation estimation = new Estimation();
+        if (dto.getVersionNumber() != null) {
+            estimation.setVersionNumber(dto.getVersionNumber());
+        }
+        estimation.setFiability(dto.getFiability());
+        estimation.setHoursAn(dto.getHoursAn());
+        estimation.setHoursAs(dto.getHoursAs());
+        estimation.setHoursDe(dto.getHoursDe());
         estimation.setTotalHours(dto.getTotalHours());
+        estimation.setActualHoursFeedback(dto.getActualHoursFeedback());
+        estimation.setJustification(dto.getJustification());
+        estimation.setUpdatedAt(dto.getUpdatedAt());
         
         if (dto.getAnalysisId() != null) {
             ImpactAnalysis analysis = new ImpactAnalysis();
@@ -30,8 +40,14 @@ public class EstimationMapper implements IMapper<Estimation, EstimationRequestDT
         return EstimationResponseDTO.builder()
                 .id(entity.getId())
                 .analysisId(entity.getAnalysis() != null ? entity.getAnalysis().getId() : null)
+                .versionNumber(entity.getVersionNumber())
+                .fiability(entity.getFiability())
+                .hoursAn(entity.getHoursAn())
+                .hoursAs(entity.getHoursAs())
+                .hoursDe(entity.getHoursDe())
                 .totalHours(entity.getTotalHours())
-                .createdAt(entity.getCreatedAt())
+                .actualHoursFeedback(entity.getActualHoursFeedback())
+                .justification(entity.getJustification())
                 .updatedAt(entity.getUpdatedAt())
                 .build();
     }
@@ -39,8 +55,32 @@ public class EstimationMapper implements IMapper<Estimation, EstimationRequestDT
     @Override
     public void updateEntityFromDTO(EstimationUpdateDTO dto, Estimation entity) {
         if (dto == null || entity == null) return;
+        if (dto.getVersionNumber() != null) {
+            entity.setVersionNumber(dto.getVersionNumber());
+        }
+        if (dto.getFiability() != null) {
+            entity.setFiability(dto.getFiability());
+        }
+        if (dto.getHoursAn() != null) {
+            entity.setHoursAn(dto.getHoursAn());
+        }
+        if (dto.getHoursAs() != null) {
+            entity.setHoursAs(dto.getHoursAs());
+        }
+        if (dto.getHoursDe() != null) {
+            entity.setHoursDe(dto.getHoursDe());
+        }
         if (dto.getTotalHours() != null) {
             entity.setTotalHours(dto.getTotalHours());
+        }
+        if (dto.getActualHoursFeedback() != null) {
+            entity.setActualHoursFeedback(dto.getActualHoursFeedback());
+        }
+        if (dto.getJustification() != null) {
+            entity.setJustification(dto.getJustification());
+        }
+        if (dto.getUpdatedAt() != null) {
+            entity.setUpdatedAt(dto.getUpdatedAt());
         }
     }
 }

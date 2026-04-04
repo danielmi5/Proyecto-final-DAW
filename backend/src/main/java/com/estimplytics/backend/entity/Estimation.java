@@ -18,22 +18,39 @@ public class Estimation {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(name = "analysis_id", unique = true, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "analysis_id", nullable = false)
     private ImpactAnalysis analysis;
+
+    @Column(name = "version_number", nullable = false)
+    private Integer versionNumber;
+
+    @Column(name = "fiability")
+    private Integer fiability;
+
+    @Column(name = "hours_an")
+    private Integer hoursAn;
+
+    @Column(name = "hours_as")
+    private Integer hoursAs;
+
+    @Column(name = "hours_de")
+    private Integer hoursDe;
 
     @Column(name = "total_hours")
     private Integer totalHours;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "actual_hours_feedback")
+    private Integer actualHoursFeedback;
 
-    @Column(name = "updated_at")
+    @Column(name = "justification", columnDefinition = "TEXT")
+    private String justification;
+
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 

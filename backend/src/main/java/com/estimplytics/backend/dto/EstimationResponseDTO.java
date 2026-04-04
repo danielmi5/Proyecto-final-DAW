@@ -14,7 +14,14 @@ import java.util.UUID;
 public class EstimationResponseDTO {
     private UUID id;
     private UUID analysisId;
+    private Integer versionNumber;
+    private Integer fiability;
+    private Integer hoursAn;
+    private Integer hoursAs;
+    private Integer hoursDe;
     private Integer totalHours;
+    private Integer actualHoursFeedback;
+    private String justification;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
