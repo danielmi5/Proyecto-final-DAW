@@ -3,6 +3,7 @@ package com.estimplytics.backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -18,6 +19,18 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "redmine_id")
+    private Integer redmineId;
+
+    @Column(name = "origin_request_code", length = 50)
+    private String originRequestCode;
+
+    @Column(name = "project_name", length = 100, nullable = false)
+    private String projectName;
+
+    @Column(name = "demand_type", length = 50)
+    private String demandType;
+
     @Column(length = 255, nullable = false)
     private String title;
 
@@ -27,20 +40,23 @@ public class Request {
     @Column(length = 50, nullable = false)
     private String status;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(length = 20, nullable = false)
+    private String priority;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "assignee_name", length = 100)
+    private String assigneeName;
+
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
+        this.createdDate = LocalDateTime.now();
     }
 }

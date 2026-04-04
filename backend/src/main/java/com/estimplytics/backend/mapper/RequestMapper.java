@@ -15,9 +15,18 @@ public class RequestMapper implements IMapper<Request, RequestRequestDTO, Reques
             return null;
         }
         return Request.builder()
+                .redmineId(dto.getRedmineId())
+                .originRequestCode(dto.getOriginRequestCode())
+                .projectName(dto.getProjectName())
+                .demandType(dto.getDemandType())
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .status(dto.getStatus())
+                .priority(dto.getPriority())
+                .assigneeName(dto.getAssigneeName())
+                .startDate(dto.getStartDate())
+                .endDate(dto.getEndDate())
+                .createdDate(dto.getCreatedDate())
                 .build();
     }
 
@@ -28,11 +37,18 @@ public class RequestMapper implements IMapper<Request, RequestRequestDTO, Reques
         }
         return RequestResponseDTO.builder()
                 .id(entity.getId())
+                .redmineId(entity.getRedmineId())
+                .originRequestCode(entity.getOriginRequestCode())
+                .projectName(entity.getProjectName())
+                .demandType(entity.getDemandType())
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .status(entity.getStatus())
-                .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
+                .priority(entity.getPriority())
+                .assigneeName(entity.getAssigneeName())
+                .startDate(entity.getStartDate())
+                .endDate(entity.getEndDate())
+                .createdDate(entity.getCreatedDate())
                 .build();
     }
 
