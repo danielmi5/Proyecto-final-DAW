@@ -27,6 +27,15 @@ public class ImpactAnalysisMapper implements IMapper<ImpactAnalysis, ImpactAnaly
             user.setId(dto.getUserId());
             analysis.setAnalyst(user);
         }
+        if (dto.getVersionNumber() != null) {
+            analysis.setVersionNumber(dto.getVersionNumber());
+        }
+        if (dto.getComplexity() != null) {
+            analysis.setComplexity(dto.getComplexity());
+        }
+        if (dto.getDocumentData() != null) {
+            analysis.setDocumentData(dto.getDocumentData());
+        }
         return analysis;
     }
 
@@ -39,7 +48,9 @@ public class ImpactAnalysisMapper implements IMapper<ImpactAnalysis, ImpactAnaly
                 .id(entity.getId())
                 .requestId(entity.getRequest() != null ? entity.getRequest().getId() : null)
                 .userId(entity.getAnalyst() != null ? entity.getAnalyst().getId() : null)
-                .createdAt(entity.getCreatedAt())
+                .versionNumber(entity.getVersionNumber())
+                .complexity(entity.getComplexity())
+                .documentData(entity.getDocumentData())
                 .updatedAt(entity.getUpdatedAt())
                 .build();
     }
@@ -60,6 +71,15 @@ public class ImpactAnalysisMapper implements IMapper<ImpactAnalysis, ImpactAnaly
                 entity.setAnalyst(new User());
             }
             entity.getAnalyst().setId(dto.getUserId());
+        }
+        if (dto.getVersionNumber() != null) {
+            entity.setVersionNumber(dto.getVersionNumber());
+        }
+        if (dto.getComplexity() != null) {
+            entity.setComplexity(dto.getComplexity());
+        }
+        if (dto.getDocumentData() != null) {
+            entity.setDocumentData(dto.getDocumentData());
         }
     }
 }

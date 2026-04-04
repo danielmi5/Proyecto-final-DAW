@@ -2,8 +2,13 @@ package com.estimplytics.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -26,18 +31,25 @@ public class ImpactAnalysis {
     @JoinColumn(name = "user_id", nullable = false)
     private User analyst;
 
-    @OneToOne(mappedBy = "analysis")
-    private Estimation estimation;
+    @Builder.Default
+    @OneToMany(mappedBy = "analysis", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Estimation> estimations = new ArrayList<>();
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "version_number", nullable = false)
+    private Integer versionNumber;
 
-    @Column(name = "updated_at")
+    @Column(length = 20, nullable = false)
+    private String complexity;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "document_data", nullable = false, columnDefinition = "jsonb")
+    private Map<String, Object> documentData;
+
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
