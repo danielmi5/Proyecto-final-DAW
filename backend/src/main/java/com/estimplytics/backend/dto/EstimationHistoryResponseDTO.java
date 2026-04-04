@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -14,8 +16,7 @@ import java.util.UUID;
 public class EstimationHistoryResponseDTO {
     private Long id;
     private UUID estimationId;
-    private UUID analysisId;
-    private Integer totalHours;
-    private String version;
-    private LocalDateTime createdAt;
+    private Integer frozenVersion;
+    private Map<String, Object> snapshotData;
+    private LocalDateTime modifiedAt;
 }

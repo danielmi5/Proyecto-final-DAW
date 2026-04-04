@@ -5,7 +5,6 @@ import com.estimplytics.backend.dto.EstimationHistoryResponseDTO;
 import com.estimplytics.backend.dto.EstimationHistoryUpdateDTO;
 import com.estimplytics.backend.entity.EstimationHistory;
 import com.estimplytics.backend.entity.Estimation;
-import com.estimplytics.backend.entity.ImpactAnalysis;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,15 +20,15 @@ public class EstimationHistoryMapper implements IMapper<EstimationHistory, Estim
             estimation.setId(dto.getEstimationId());
             entity.setEstimation(estimation);
         }
-        
-        if (dto.getAnalysisId() != null) {
-            ImpactAnalysis analysis = new ImpactAnalysis();
-            analysis.setId(dto.getAnalysisId());
-            entity.setAnalysis(analysis);
+        if (dto.getFrozenVersion() != null) {
+            entity.setFrozenVersion(dto.getFrozenVersion());
         }
-        
-        entity.setTotalHours(dto.getTotalHours());
-        entity.setVersion(dto.getVersion());
+        if (dto.getSnapshotData() != null) {
+            entity.setSnapshotData(dto.getSnapshotData());
+        }
+        if (dto.getModifiedAt() != null) {
+            entity.setModifiedAt(dto.getModifiedAt());
+        }
         
         return entity;
     }
@@ -40,21 +39,23 @@ public class EstimationHistoryMapper implements IMapper<EstimationHistory, Estim
         return EstimationHistoryResponseDTO.builder()
                 .id(entity.getId())
                 .estimationId(entity.getEstimation() != null ? entity.getEstimation().getId() : null)
-                .analysisId(entity.getAnalysis() != null ? entity.getAnalysis().getId() : null)
-                .totalHours(entity.getTotalHours())
-                .version(entity.getVersion())
-                .createdAt(entity.getCreatedAt())
+                .frozenVersion(entity.getFrozenVersion())
+                .snapshotData(entity.getSnapshotData())
+                .modifiedAt(entity.getModifiedAt())
                 .build();
     }
 
     @Override
     public void updateEntityFromDTO(EstimationHistoryUpdateDTO dto, EstimationHistory entity) {
         if (dto == null) return;
-        if (dto.getTotalHours() != null) {
-            entity.setTotalHours(dto.getTotalHours());
+        if (dto.getFrozenVersion() != null) {
+            entity.setFrozenVersion(dto.getFrozenVersion());
         }
-        if (dto.getVersion() != null) {
-            entity.setVersion(dto.getVersion());
+        if (dto.getSnapshotData() != null) {
+            entity.setSnapshotData(dto.getSnapshotData());
+        }
+        if (dto.getModifiedAt() != null) {
+            entity.setModifiedAt(dto.getModifiedAt());
         }
     }
 }
