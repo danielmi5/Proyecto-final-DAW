@@ -3,6 +3,7 @@ package com.estimplytics.backend.service;
 import com.estimplytics.backend.dto.EstimationRequestDTO;
 import com.estimplytics.backend.dto.EstimationResponseDTO;
 import com.estimplytics.backend.dto.EstimationUpdateDTO;
+import com.estimplytics.backend.dto.EstimationAlgorithmResultDTO;
 import com.estimplytics.backend.entity.Estimation;
 import com.estimplytics.backend.exception.EstimationNotFoundException;
 import com.estimplytics.backend.mapper.EstimationMapper;
@@ -20,10 +21,16 @@ public class EstimationService implements IEstimationService {
 
     private final EstimationRepository repository;
     private final EstimationMapper mapper;
+    private final EstimationAlgorithmService estimationAlgorithmService;
 
-    public EstimationService(EstimationRepository repository, EstimationMapper mapper) {
+    public EstimationService(
+        EstimationRepository repository,
+        EstimationMapper mapper,
+        EstimationAlgorithmService estimationAlgorithmService
+    ) {
         this.repository = repository;
         this.mapper = mapper;
+        this.estimationAlgorithmService = estimationAlgorithmService;
     }
 
     @Override
@@ -39,6 +46,9 @@ public class EstimationService implements IEstimationService {
     @Override
     @Transactional
     public EstimationResponseDTO create(EstimationRequestDTO dto) {
+        EstimationAlgorithmResultDTO estimationAlgorithmResult = estimationAlgorithmService.calculateSuggestionForAnalysisId(dto.getAnalysisId());
+        dto.setTotalHours(estimationAlgorithmResult.getSuggestedTotalHours());
+        dto.setFiability(estimationAlgorithmResult.getFiabilityPercentage());
         Estimation entity = mapper.toEntity(dto);
         Estimation savedEntity = repository.save(entity);
         return mapper.toResponseDTO(savedEntity);
