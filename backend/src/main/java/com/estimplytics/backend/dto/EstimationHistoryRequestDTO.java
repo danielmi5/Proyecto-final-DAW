@@ -1,5 +1,6 @@
 package com.estimplytics.backend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +17,18 @@ import java.util.UUID;
 @Builder
 public class EstimationHistoryRequestDTO {
     @NotNull
+    @Schema(description = "Identificador de la estimación", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID estimationId;
 
     @NotNull
+    @Schema(description = "Versión congelada", example = "1")
     private Integer frozenVersion;
 
     @NotNull
+    @Schema(description = "Datos históricos de la estimación", example = "{\"hoursAn\":10,\"hoursAs\":20}")
     private Map<String, Object> snapshotData;
 
     @NotNull
+    @Schema(description = "Fecha y hora de modificación", example = "2026-05-08T08:30:00")
     private LocalDateTime modifiedAt;
 }
