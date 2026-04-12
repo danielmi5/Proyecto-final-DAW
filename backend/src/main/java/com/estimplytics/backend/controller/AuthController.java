@@ -4,6 +4,9 @@ import com.estimplytics.backend.dto.TokenRequestDTO;
 import com.estimplytics.backend.dto.TokenResponseDTO;
 import com.estimplytics.backend.security.JwtService;
 import com.estimplytics.backend.security.TokenBlacklistService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -34,6 +37,12 @@ public class AuthController {
     }
 
     @PostMapping("/token")
+    @Operation(summary = "Iniciar sesión", description = "Autentica al usuario y devuelve un token JWT")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Token generado exitosamente"),
+        @ApiResponse(responseCode = "400", description = "Petición inválida"),
+        @ApiResponse(responseCode = "401", description = "Credenciales inválidas")
+    })
     public ResponseEntity<TokenResponseDTO> login(@Valid @RequestBody TokenRequestDTO request) {
         Authentication authentication;
         try {
@@ -55,6 +64,11 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
+    @Operation(summary = "Cerrar sesión", description = "Invalida el token JWT actual")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Sesión cerrada exitosamente"),
+        @ApiResponse(responseCode = "400", description = "Token no proporcionado o inválido")
+    })
     public ResponseEntity<Void> logout(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
