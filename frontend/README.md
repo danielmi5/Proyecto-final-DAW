@@ -1,59 +1,60 @@
-# Frontend
+# Frontend Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+Proyecto Angular 21 con componentes standalone, SCSS y TypeScript en modo estricto.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- Node.js 20 o superior
+- npm 11 o superior
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instalación
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Desarrollo
 
 ```bash
-ng generate --help
+npm run dev
 ```
 
-## Building
+Abre `http://localhost:4200/` cuando el servidor termine de compilar.
 
-To build the project run:
+## Build
 
 ```bash
-ng build
+npm run build:prod
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Análisis de bundle
 
 ```bash
-ng test
+npm run build:stats
+npm run analyze:bundle
 ```
 
-## Running end-to-end tests
+## TypeScript strict mode
 
-For end-to-end (e2e) testing, run:
+Comprueba el tipado con:
 
 ```bash
-ng e2e
+npm run typecheck
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Para validar que strict está activo, introduce un error intencionado en cualquier archivo `.ts`, por ejemplo:
 
-## Additional Resources
+```ts
+const value: string = null;
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+La compilación debe fallar con un error de tipos.
+
+## Scripts principales
+
+- `npm run dev`: servidor de desarrollo
+- `npm run build`: build estándar
+- `npm run build:prod`: build de producción
+- `npm run build:stats`: build con estadísticas
+- `npm run analyze:bundle`: análisis del bundle
+- `npm run typecheck`: comprobación estricta de TypeScript
