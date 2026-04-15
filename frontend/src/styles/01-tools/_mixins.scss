@@ -1,0 +1,141 @@
+@use "../00-settings/variables" as vars;
+
+@mixin media($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: vars.$breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: vars.$breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: vars.$breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: vars.$breakpoint-xl) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint '#{$breakpoint}'. Use sm, md, lg or xl.";
+  }
+}
+
+@mixin typography($type, $color: vars.$color-neutral-7) {
+  @if $type == h1 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-5xl;
+    font-weight: vars.$font-weight-700;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == h2 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-4xl;
+    font-weight: vars.$font-weight-700;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == h3 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-3xl;
+    font-weight: vars.$font-weight-600;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == h4 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-2xl;
+    font-weight: vars.$font-weight-600;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == h5 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-600;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == h6 {
+    font-family: vars.$font-secondary;
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-600;
+    line-height: vars.$line-height-tight;
+    margin: 0;
+    color: $color;
+  } @else if $type == paragraph {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-400;
+    line-height: vars.$line-height-relaxed;
+    color: $color;
+  } @else if $type == small {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-400;
+    line-height: vars.$line-height-normal;
+    color: $color;
+  } @else if $type == mini {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-400;
+    line-height: vars.$line-height-normal;
+    color: $color;
+  } @else if $type == button {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-500;
+    line-height: vars.$line-height-normal;
+    letter-spacing: 0.089em;
+    text-decoration: none;
+    cursor: pointer;
+    color: $color;
+  } @else if $type == link {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-400;
+    line-height: vars.$line-height-normal;
+    text-decoration: none;
+    color: $color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  } @else {
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-400;
+    line-height: vars.$line-height-normal;
+    color: $color;
+  }
+}
+
+@mixin flex(
+  $direction: row,
+  $gap: vars.$spacing-sm,
+  $align: stretch,
+  $justify: flex-start
+) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+
+@mixin disabled() {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
