@@ -85,6 +85,20 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Invalid credentials"));
     }
 
+    @ExceptionHandler(RedmineIntegrationException.class)
+    public ResponseEntity<ApiErrorDTO> handleRedmineIntegrationException(RedmineIntegrationException e, HttpServletRequest request) {
+        HttpStatus status = determineStatusFromErrorType(e.getErrorType());
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Redmine integration error"));
+    }
+
+    private HttpStatus determineStatusFromErrorType(RedmineIntegrationException.ErrorType errorType) {
+        return switch (errorType) {
+            case INVALID_CREDENTIALS -> HttpStatus.SERVICE_UNAVAILABLE;
+            case NETWORK_ERROR, TIMEOUT -> HttpStatus.BAD_GATEWAY;
+            case INVALID_PAYLOAD -> HttpStatus.BAD_GATEWAY;
+        };
+    }
+
     private ApiErrorDTO createErrorBody(HttpStatus status, HttpServletRequest request, Exception e, String desc) {
         String message;
         if (e instanceof MethodArgumentNotValidException) {
