@@ -1,0 +1,137 @@
+@use "../00-settings/variables" as *;
+@use "../01-tools/mixins" as mixins;
+
+
+
+.footer {
+	padding: var(--spacing-3xl) var(--spacing-xl);
+
+	background-color: var(--color-neutral-7);
+	color: var(--color-neutral-2);
+
+	&__top {
+		max-width: var(--container-max-width, 80rem);
+		padding-bottom: var(--spacing-2xl);
+		margin: 0 auto;
+
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+		gap: var(--spacing-2xl);
+
+		border-bottom: 1px solid var(--color-neutral-6);
+	}
+
+	&__brand {
+		@include mixins.flex(column, var(--spacing-sm));
+
+		&-name {
+	
+
+			font-family: var(--font-secondary);
+			font-size: var(--font-size-xl);
+			font-weight: var(--font-weight-700);
+
+			color: var(--color-neutral-1);
+		}
+
+		&-description {
+			max-width: 320px;
+
+			color: var(--color-neutral-3);
+			font-size: var(--font-size-sm);
+			line-height: var(--line-height-relaxed);
+		}
+	}
+
+	&__links {
+		@include mixins.flex(column, var(--spacing-sm), flex-start, flex-start);
+
+
+
+		&-title {
+			letter-spacing: 0.05em;
+			
+			color: var(--color-neutral-1);
+			font-family: var(--font-secondary);
+			font-size: var(--font-size-sm);
+			font-weight: var(--font-weight-600);
+			text-transform: uppercase;
+		}
+
+		&-list {
+			padding: 0;
+
+			list-style: none;
+		}
+
+
+		&-item {
+			margin-bottom: var(--spacing-sm);
+		}
+
+
+		&-link {
+			font-size: var(--font-size-sm);
+			text-decoration: none;
+
+			color: var(--color-neutral-3);
+			transition: color var(--transition-fast) ease;
+
+			&:hover,
+			&:focus-visible {
+				color: var(--color-neutral-1);
+
+				outline: none;
+			}
+		}
+	}
+
+	&__bottom {
+		max-width: var(--container-max-width, 80rem);
+		padding-top: var(--spacing-lg);
+		margin: 0 auto;
+
+		@include mixins.flex(row, var(--spacing-md), space-between, center);
+
+		color: var(--color-neutral-4);
+		font-size: var(--font-size-sm);
+
+		&-links {
+			@include mixins.flex(row, var(--spacing-lg), flex-start, center);
+
+			&-link {
+				text-decoration: none;
+
+				color: var(--color-neutral-4);
+				transition: color var(--transition-fast) ease;
+
+				&:hover,
+				&:focus-visible {
+					color: var(--color-neutral-1);
+
+					outline: none;
+				}
+			}
+		}
+	}
+
+	&__copyright {
+		color: var(--color-neutral-4);
+		font-size: var(--font-size-sm);
+	}
+
+	@media (max-width: $breakpoint-sm) {
+		&__top {
+			max-width: 150px;
+			margin: 0 auto;
+
+			grid-template-columns: 1fr;
+
+			gap: var(--spacing-xl);
+
+			&__items{
+				width: auto;
+			}
+		}
+	}
+}
