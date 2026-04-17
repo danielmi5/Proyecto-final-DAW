@@ -46,11 +46,32 @@ public class Request {
     @Column(name = "assignee_name", length = 100)
     private String assigneeName;
 
+    @Column(name = "author_name", length = 100)
+    private String authorName;
+
     @Column(name = "start_date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "redmine_created_date")
+    private LocalDateTime redmineCreatedDate;
+
+    @Column(name = "redmine_updated_date")
+    private LocalDateTime redmineUpdatedDate;
+
+    @Column(name = "redmine_closed_date")
+    private LocalDateTime redmineClosedDate;
+
+    @Column(name = "done_ratio")
+    private Integer doneRatio;
+
+    @Column(name = "estimated_hours")
+    private Double estimatedHours;
+
+    @Column(name = "spent_hours")
+    private Double spentHours;
 
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate;

@@ -24,8 +24,15 @@ public class RequestMapper implements IMapper<Request, RequestRequestDTO, Reques
                 .status(dto.getStatus())
                 .priority(dto.getPriority())
                 .assigneeName(dto.getAssigneeName())
+                .authorName(dto.getAuthorName())
                 .startDate(dto.getStartDate())
                 .endDate(dto.getEndDate())
+                .redmineCreatedDate(dto.getRedmineCreatedDate())
+                .redmineUpdatedDate(dto.getRedmineUpdatedDate())
+                .redmineClosedDate(dto.getRedmineClosedDate())
+                .doneRatio(dto.getDoneRatio())
+                .estimatedHours(dto.getEstimatedHours())
+                .spentHours(dto.getSpentHours())
                 .createdDate(dto.getCreatedDate())
                 .build();
     }
@@ -46,8 +53,15 @@ public class RequestMapper implements IMapper<Request, RequestRequestDTO, Reques
                 .status(entity.getStatus())
                 .priority(entity.getPriority())
                 .assigneeName(entity.getAssigneeName())
+                .authorName(entity.getAuthorName())
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())
+                .redmineCreatedDate(entity.getRedmineCreatedDate())
+                .redmineUpdatedDate(entity.getRedmineUpdatedDate())
+                .redmineClosedDate(entity.getRedmineClosedDate())
+                .doneRatio(entity.getDoneRatio())
+                .estimatedHours(entity.getEstimatedHours())
+                .spentHours(entity.getSpentHours())
                 .createdDate(entity.getCreatedDate())
                 .build();
     }
