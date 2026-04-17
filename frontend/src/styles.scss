@@ -1,5 +1,8 @@
 @use "styles/00-settings/variables" as vars;
+@use "styles/00-settings/css-variables";
 @use "styles/01-tools/mixins" as mixins;
 @use "styles/02-generic/reset";
 @use "styles/03-elements/elements";
 @use "styles/04-layout/layout";
+@use "styles/05-components/header";
+@use "styles/05-components/footer";
