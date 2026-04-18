@@ -1,0 +1,76 @@
+<div class="form-input" 
+  [class.form-input--success]="getEffectiveState() === 'success'" 
+  [class.form-input--warning]="getEffectiveState() === 'warning'"
+  [class.form-input--error]="getEffectiveState() === 'error'" 
+  [class.form-input--disabled]="disabled">
+  <label class="form-input__label" [for]="id">
+    <span class="form-input__label-text">{{ label }}</span>
+    @if (required) {
+      <span class="form-input__label-required" aria-hidden="true">*</span>
+    }
+  </label>
+
+  <div class="form-input__input-container" (click)="inputRef.focus()">
+    @if (type === 'password') {
+      <button type="button" class="form-input__icon form-input__icon--left form-input__icon--button" aria-label="Show or hide password" (click)="togglePasswordVisibility(); $event.stopPropagation()">
+        <span [feather]="getPasswordToggleIcon()" [variant]="'botones'"></span>
+      </button>
+    }
+    @if (leftIcon) {
+      <span class="form-input__icon form-input__icon--left" aria-hidden="true">
+        <span [feather]="leftIcon" [variant]="'botones'"></span>
+      </span>
+    }
+
+    <input #inputRef
+      class="form-input__field"
+      [class.form-input__field--with-left-icon]="type === 'password' || leftIcon"
+      [class.form-input__field--with-right-icon]="!!getRightIconEffective()"
+      [id]="id"
+      [name]="name"
+      [type]="displayType"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [value]="value"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      [attr.aria-disabled]="disabled ? 'true' : null"
+      [attr.aria-required]="required ? 'true' : null"
+      [required]="required"
+      [attr.aria-invalid]="getEffectiveState() === 'error' ? 'true' : 'false'"
+      [attr.aria-describedby]="id + '-message'"
+      [attr.min]="min"
+      [attr.max]="max"
+    />
+
+    @if (getRightIconEffective()) {
+      <span class="form-input__icon form-input__icon--right" aria-hidden="true">
+        <span [feather]="getRightIconEffective() ?? ''" [variant]="'botones'"></span>
+      </span>
+    }
+  </div>
+
+  @if (getEffectiveState() === 'initial' && helpText) {
+    <small class="form-input__message" [id]="id + '-message'">
+      {{ helpText }}
+    </small>
+  }
+
+  @if (getEffectiveState() === 'warning' && warningMessage) {
+    <small class="form-input__message form-input__message--warning" [id]="id + '-message'" role="alert">
+      {{ warningMessage }}
+    </small>
+  }
+
+  @if (getEffectiveState() === 'error' && errorMessage) {
+    <small class="form-input__message form-input__message--error" [id]="id + '-message'" role="alert">
+      {{ errorMessage }}
+    </small>
+  }
+
+  @if (getEffectiveState() === 'success' && showSuccessMessage) {
+    <small class="form-input__message form-input__message--success" [id]="id + '-message'">
+      {{ successMessage || 'Success' }}
+    </small>
+  }
+</div>
