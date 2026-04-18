@@ -26,9 +26,7 @@
     padding: 0 var(--spacing-lg);
     height: 100%;
     
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex(row, 0, space-between, center)
   }
 
   &__logo {
@@ -140,7 +138,7 @@
     transition: background-color var(--transition-fast) ease;
 
     &:hover {
-      background-color: var(--color-neutral-2);
+      background-color: transparent;
     }
 
     &:focus-visible {
@@ -209,8 +207,8 @@
     &__nav {
       padding: var(--spacing-md);
 
-      position: fixed;
-      top: 5rem;
+      position: absolute;
+      top: 100%;
       left: 0;
       right: 0;
 
@@ -219,7 +217,6 @@
       
       transform: translateY(-110%);
       opacity: 0;
-      transition: transform var(--transition-base) ease, opacity var(--transition-base) ease;
 
       &--open {
         transform: translateY(0);
@@ -240,6 +237,26 @@
 
     &__menu {
       display: flex;
+    }
+  }
+
+  @media (max-width: 350px) {
+    &__container{
+      padding: 5px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    height: auto;
+    min-height: 5.3em;
+
+    &--scrolled {
+      height: auto;
+      min-height: 5.3rem;
+    }
+
+    &__container{
+      flex-direction: column;
     }
   }
 }

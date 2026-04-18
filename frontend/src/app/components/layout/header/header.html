@@ -20,7 +20,7 @@
       <button class="header__avatar" type="button" aria-label="Menú de usuario" aria-haspopup="menu" aria-expanded="false">DM</button>
 
       <button class="header__menu" type="button" [attr.aria-expanded]="mobileMenuAriaExpanded()" [attr.aria-label]="mobileMenuOpen() ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'" (click)="toggleMobileMenu()">
-        <span class="header__menu-icon" [class.header__menu-icon--open]="mobileMenuOpen()" aria-hidden="true"></span>
+        <span [feather]="mobileMenuOpen() ? 'x' : 'menu'" variant="header" aria-hidden="true"></span>
       </button>
     </div>
   </div>
