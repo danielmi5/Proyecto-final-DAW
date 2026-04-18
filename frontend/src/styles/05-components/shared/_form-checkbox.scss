@@ -1,0 +1,86 @@
+@use "../../00-settings/variables" as *;
+@use "../../01-tools/mixins" as mixins;
+
+.form-checkbox {
+    @include mixins.flex(row, $spacing-xs, flex-start, center);
+
+    &__label {
+            @include mixins.flex(row, $spacing-sm, flex-start, center);
+    }
+
+    &__field {
+            width: 1px;
+            height: 1px;
+            border: 0;
+            white-space: nowrap;
+
+            opacity: 0;
+
+            position: absolute;
+
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    &__visual {
+            width: 18px;
+            height: 18px;
+            margin-right: $spacing-sm;
+
+            @include mixins.flex-center();
+            flex: 0 0 18px;
+
+            cursor: pointer;
+            pointer-events: auto;
+            user-select: none;
+
+            .form-checkbox__icon {
+                    width: 100%;
+                    height: 100%;
+
+                    display: block;
+
+                    color: var(--card-label);
+                    fill: currentColor;
+
+                    pointer-events: none;
+            }
+
+            .form-checkbox__icon--checked {
+                    display: none;
+            }
+    }
+
+    input:checked + .form-checkbox__visual .form-checkbox__icon--checked {
+            display: block;
+    }
+
+    input:checked + .form-checkbox__visual .form-checkbox__icon--box {
+            display: none;
+    }
+
+    &__label-text {
+            @include mixins.typography(small, var(--card-label));
+            font-weight: $font-weight-400;
+    }
+
+    &__label-required {
+            color: var(--color-warning);
+            font-weight: $font-weight-700;
+    }
+
+    &--disabled {
+            @include mixins.disabled();
+
+            .form-checkbox__visual {
+                    cursor: default;
+            }
+    }
+
+    input:focus + .form-checkbox__visual,
+    input:focus-visible + .form-checkbox__visual {
+            outline: 3px solid var(--border-input-focus);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+    }
+}
