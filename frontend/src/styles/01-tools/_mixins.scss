@@ -22,81 +22,81 @@
   }
 }
 
-@mixin typography($type, $color: vars.$color-neutral-7) {
+@mixin typography($type, $color: var(--color-neutral-7)) {
   @if $type == h1 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-5xl;
-    font-weight: vars.$font-weight-700;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h2 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-4xl;
-    font-weight: vars.$font-weight-700;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h3 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-3xl;
-    font-weight: vars.$font-weight-600;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h4 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-2xl;
-    font-weight: vars.$font-weight-600;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h5 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-xl;
-    font-weight: vars.$font-weight-600;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h6 {
-    font-family: vars.$font-secondary;
-    font-size: vars.$font-size-lg;
-    font-weight: vars.$font-weight-600;
-    line-height: vars.$line-height-tight;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == paragraph {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-base;
-    font-weight: vars.$font-weight-400;
-    line-height: vars.$line-height-relaxed;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-relaxed);
     color: $color;
   } @else if $type == small {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-sm;
-    font-weight: vars.$font-weight-400;
-    line-height: vars.$line-height-normal;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-normal);
     color: $color;
   } @else if $type == mini {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-xs;
-    font-weight: vars.$font-weight-400;
-    line-height: vars.$line-height-normal;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-normal);
     color: $color;
   } @else if $type == button {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-lg;
-    font-weight: vars.$font-weight-500;
-    line-height: vars.$line-height-normal;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-normal);
     letter-spacing: 0.089em;
     text-decoration: none;
     cursor: pointer;
     color: $color;
   } @else if $type == link {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-base;
-    font-weight: vars.$font-weight-400;
-    line-height: vars.$line-height-normal;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-normal);
     text-decoration: none;
     color: $color;
 
@@ -104,17 +104,17 @@
       text-decoration: underline;
     }
   } @else {
-    font-family: vars.$font-primary;
-    font-size: vars.$font-size-base;
-    font-weight: vars.$font-weight-400;
-    line-height: vars.$line-height-normal;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-normal);
     color: $color;
   }
 }
 
 @mixin flex(
   $direction: row,
-  $gap: vars.$spacing-sm,
+  $gap: var(--spacing-sm),
   $justify: flex-start,
   $align: stretch
 ) {
