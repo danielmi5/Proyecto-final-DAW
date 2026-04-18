@@ -1,0 +1,25 @@
+@if (routerLink()) {
+  <a
+    [routerLink]="routerLink()!"
+    [queryParams]="queryParams()"
+    [attr.aria-label]="ariaLabel()"
+    [class]="buttonClasses()"
+    (click)="handleClick($event)">
+    @if (icon()) {
+      <i [feather]="icon()!" aria-hidden="true"></i>
+    }
+    <span>{{ label() }}</span>
+  </a>
+} @else {
+  <button
+    [type]="buttonType()"
+    [disabled]="disabled()"
+    [attr.aria-label]="ariaLabel()"
+    [class]="buttonClasses()"
+    (click)="handleClick($event)">
+    @if (icon()) {
+      <i [feather]="icon()!" aria-hidden="true"></i>
+    }
+    <span>{{ label() }}</span>
+  </button>
+}
