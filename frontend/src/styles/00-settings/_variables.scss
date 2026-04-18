@@ -12,18 +12,16 @@ $color-primary-darkest: hsl(197, 92%, 11%);
 
 // Secondary colors
 $color-secondary-1: hsl(71, 58%, 64%);
-$color-secondary-2: hsl(26, 100%, 94%);
-$color-secondary-3: hsl(358, 24%, 52%);
-$color-secondary-4: hsl(345, 67%, 8%); 
+$color-secondary-2: hsl(257 85% 71.2%);
+$color-secondary-3: hsl(314 53.8% 61.8%);
+$color-secondary-4: hsl(1 52.9% 55.9%);
+$color-secondary-5: hsl(345, 67%, 16%); 
 
-// Neutral colors
-$color-neutral-1: hsl(210, 10%, 95%);
-$color-neutral-2: hsl(210, 9%, 85%);
-$color-neutral-3: hsl(210, 10%, 70%);
-$color-neutral-4: hsl(210, 11%, 50%);
-$color-neutral-5: hsl(210, 12%, 30%);
-$color-neutral-6: hsl(210, 12%, 15%);
-$color-neutral-7: hsl(210, 13%, 8%);
+$color-secondary-1-dark: hsl(71, 58%, 48%);
+$color-secondary-2-dark: hsl(257, 85%, 62%);
+$color-secondary-3-dark: hsl(314, 53.8%, 52%);
+$color-secondary-4-dark: hsl(1, 52.9%, 46%);
+$color-secondary-5-dark: hsl(345, 67%, 8%);
 
 // Semantic colors
 $color-success: hsl(132, 63%, 41%);
@@ -35,6 +33,95 @@ $color-warning-dark: hsl(38, 92%, 30%);
 $color-info: hsl(217, 91%, 60%);
 $color-info-dark: hsl(217, 91%, 35%);
 
+// Category colors
+$color-category-1: $color-secondary-1;
+$color-category-dark-1: $color-secondary-1-dark;
+
+$color-category-2: $color-secondary-2;
+$color-category-dark-2: $color-secondary-2-dark;
+
+$color-category-3: $color-warning;
+$color-category-dark-3: $color-warning-dark;
+
+$color-category-4: $color-success;
+$color-category-dark-4: $color-success-dark;
+
+$color-category-5: $color-primary-base; 
+$color-category-dark-5: $color-primary-dark;
+
+// Neutral colors
+$color-neutral-1: hsl(210, 10%, 95%);
+$color-neutral-2: hsl(210, 9%, 85%);
+$color-neutral-3: hsl(210, 10%, 70%);
+$color-neutral-4: hsl(210, 11%, 50%);
+$color-neutral-5: hsl(210, 12%, 30%);
+$color-neutral-6: hsl(210, 12%, 15%);
+$color-neutral-7: hsl(210, 13%, 8%);
+
+
+// VARIABLES
+
+$text-light: hsl(0 0% 7.1%);
+$text-dark: hsl(0 0% 94.9%);
+
+$text-important-light: $color-primary-base;
+$text-important-dark: $color-primary-lighter;
+
+$link-form-light: $color-primary-base;
+$link-form-dark: $color-primary-light;
+
+$border-light: hsl(210 3.6% 11%);
+$border-dark: hsl(210, 10%, 95%);
+
+$border-input-light: $color-primary-dark;
+$border-input-dark: $color-primary-light;
+
+$border-input-focus-light: $color-primary-dark;
+$border-input-focus-dark: $color-primary-light;
+
+$border-button-light: $color-neutral-7;
+$border-button-dark: $color-primary-light;
+
+$border-button-secondary-light: $color-primary-dark;
+$border-button-secondary-dark: $color-primary-lightest;
+
+$bg-light: hsl(0 0% 98%);
+$bg-dark: hsl(210 3.6% 11%);
+
+$bg-cards-light: hsl(0 0% 96.1%);
+$bg-cards-dark: hsl(210 12% 15%);
+
+$bg-modals-light: hsl(0 0% 92.9%);
+$bg-modals-dark: hsl(210 12% 18%);
+
+$bg-header-light: $color-primary-lightest;
+$bg-header-dark: $color-primary-darkest;
+
+$bg-footer-light: $color-neutral-7;
+$bg-footer-dark: $color-neutral-1;
+
+$link-footer-light: $color-neutral-1;
+$link-footer-dark: $color-neutral-1;
+
+$card-important-light: $color-primary-dark;
+$card-important-dark: $color-neutral-5;
+
+$card-label-light: $color-neutral-4;
+$card-label-dark: $color-neutral-2;
+
+$bg-success: hsl(38 29.3% 83.9%);
+$bg-error:hsl(5 29.3% 83.9%);
+$bg-warning: hsl(38 29.3% 83.9%);
+$bg-info: hsl(195 29.3% 83.9%);
+
+// Button variants
+$button-primary-default: $color-primary-base;
+$button-primary-hover: $color-primary-dark;
+$button-primary-clicked: $color-primary-darker;
+
+$button-secondary-default: $color-neutral-1;
+$button-secondary-hover: $color-neutral-2;
+$button-secondary-clicked: $color-neutral-3;
 
 // TYPOGRAPHY 
 
@@ -94,6 +181,7 @@ $radius-xl: 1.25rem;
 $radius-full: 9999px;
 
 // Border
+$border-mini: 0.01875rem;
 $border-thin: 0.0625rem;
 $border-medium: 0.125rem;
 $border-thick: 0.1875rem;

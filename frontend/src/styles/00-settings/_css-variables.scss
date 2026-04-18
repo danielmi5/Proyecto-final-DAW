@@ -9,10 +9,17 @@
   --color-primary-darker: #{$color-primary-darker};
   --color-primary-darkest: #{$color-primary-darkest};
 
-  --color-secondary-1: #{$color-secondary-1};
-  --color-secondary-2: #{$color-secondary-2};
-  --color-secondary-3: #{$color-secondary-3};
-  --color-secondary-4: #{$color-secondary-4};
+  --color-secondary-1: #{$color-secondary-1-dark};
+  --color-secondary-2: #{$color-secondary-2-dark};
+  --color-secondary-3: #{$color-secondary-3-dark};
+  --color-secondary-4: #{$color-secondary-4-dark};
+  --color-secondary-5: #{$color-secondary-5-dark};
+  
+  --color-category-1: #{$color-category-dark-1};
+  --color-category-2: #{$color-category-dark-2};
+  --color-category-3: #{$color-category-dark-3};
+  --color-category-4: #{$color-category-dark-4};
+  --color-category-5: #{$color-category-dark-5};
 
   --color-neutral-1: #{$color-neutral-1};
   --color-neutral-2: #{$color-neutral-2};
@@ -30,6 +37,48 @@
   --color-warning-dark: #{$color-warning-dark};
   --color-info: #{$color-info};
   --color-info-dark: #{$color-info-dark};
+
+  --button-primary-default: #{$button-primary-default};
+  --button-primary-hover: #{$button-primary-hover};
+  --button-primary-clicked: #{$button-primary-clicked};
+
+  --button-secondary-default: #{$button-secondary-default};
+  --button-secondary-hover: #{$button-secondary-hover};
+  --button-secondary-clicked: #{$button-secondary-clicked};
+
+  --text: #{$text-light};
+  --text-dark: #{$text-dark};
+
+  --text-important: #{$text-important-light};
+
+  --link-form: #{$link-form-light};
+
+  --border: #{$border-light};
+
+  --border-input: #{$border-input-light};
+  --border-input-focus: #{$border-input-focus-light};
+
+  --border-button: #{$border-button-light};
+  --border-button-secondary: #{$border-button-secondary-light};
+
+  --bg: #{$bg-light};
+
+  --bg-header: #{$bg-header-light};
+  --bg-footer: #{$bg-footer-light};
+
+  --link-footer: #{$link-footer-light};
+
+  --bg-cards: #{$bg-cards-light};
+
+  --bg-modals: #{$bg-modals-light};
+
+  --card-important: #{$card-important-light};
+  --card-label: #{$card-label-light};
+
+  --bg-success: #{$bg-success};
+  --bg-error: #{$bg-error};
+  --bg-warning: #{$bg-warning};
+  --bg-info: #{$bg-info};
 
   --font-primary: #{$font-primary};
   --font-secondary: #{$font-secondary};
@@ -77,6 +126,7 @@
   --radius-xl: #{$radius-xl};
   --radius-full: #{$radius-full};
 
+  --border-mini: #{$border-mini};
   --border-thin: #{$border-thin};
   --border-medium: #{$border-medium};
   --border-thick: #{$border-thick};
@@ -112,10 +162,53 @@ html.dark {
   --color-primary-darker: #{$color-primary-lighter};
   --color-primary-darkest: #{$color-primary-lightest};
 
-  --color-secondary-1: #{$color-secondary-4};
-  --color-secondary-2: #{$color-secondary-3};
-  --color-secondary-3: #{$color-secondary-2};
-  --color-secondary-4: #{$color-secondary-1};
+  --color-secondary-1: #{$color-secondary-1};
+  --color-secondary-2: #{$color-secondary-2};
+  --color-secondary-3: #{$color-secondary-3};
+  --color-secondary-4: #{$color-secondary-4};
+  --color-secondary-5: #{$color-secondary-5};
+
+  --color-category-1: #{$color-category-1};
+  --color-category-2: #{$color-category-2};
+  --color-category-3: #{$color-category-3};
+  --color-category-4: #{$color-category-4};
+  --color-category-5: #{$color-category-5};
+
+  --button-primary-default: #{$button-primary-default};
+  --button-primary-hover: #{$button-primary-hover};
+  --button-primary-clicked: #{$button-primary-clicked};
+
+  --button-secondary-default: #{$button-secondary-default};
+  --button-secondary-hover: #{$button-secondary-hover};
+  --button-secondary-clicked: #{$button-secondary-clicked};
+
+  --text: #{$text-dark};
+  --text-dark: #{$text-light};
+  --text-important: #{$text-important-dark};
+  --link-form: #{$link-form-dark};
+  --border: #{$border-dark};
+  --border-input: #{$border-input-dark};
+  --border-input-focus: #{$border-input-focus-dark};
+
+  --border-button: #{$border-button-dark};
+  --border-button-secondary: #{$border-button-secondary-dark};
+
+  --bg: #{$bg-dark};
+
+  --bg-header: #{$bg-header-dark};
+  --bg-footer: #{$bg-footer-dark};
+
+  --link-footer: #{$link-footer-dark};
+  --bg-cards: #{$bg-cards-dark};
+  --bg-modals: #{$bg-modals-dark};
+
+  --card-important: #{$card-important-dark};
+  --card-label: #{$card-label-dark};
+
+  --bg-success: #{$bg-success};
+  --bg-error: #{$bg-error};
+  --bg-warning: #{$bg-warning};
+  --bg-info: #{$bg-info};
 }
 
 
