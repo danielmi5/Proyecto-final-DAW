@@ -1,0 +1,89 @@
+<section class="register__content">
+	<header class="register__header">
+		<p class="register__eyebrow">Formulario</p>
+		<h2 class="register__title register__title--content">Completa tus datos</h2>
+		<p class="register__subtitle">Completa tus datos para continuar</p>
+	</header>
+
+	<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form" aria-label="Formulario de registro de cuenta" novalidate>
+		<div class="form__group">
+			<app-form-input
+				formControlName="name"
+				id="name"
+				label="Nombre completo"
+				placeholder="Tu nombre"
+				[required]="true"
+				[validationState]="fieldState('name')"
+				[warningMessage]="fieldMessage('name', 'warning')"
+				[errorMessage]="fieldMessage('name', 'error')"
+				[successMessage]="fieldMessage('name', 'success')"
+				[showSuccessMessage]="true"
+			></app-form-input>
+		</div>
+
+		<div class="form__group">
+			<app-form-input
+				formControlName="email"
+				id="email"
+				label="Correo electrónico"
+				type="email"
+				[required]="true"
+				placeholder="tu@email.com"
+				[validationState]="fieldState('email')"
+				[warningMessage]="fieldMessage('email', 'warning')"
+				[errorMessage]="fieldMessage('email', 'error')"
+				[successMessage]="fieldMessage('email', 'success')"
+				[showSuccessMessage]="true"
+			></app-form-input>
+		</div>
+
+		<div class="form__group">
+			<app-form-input
+				formControlName="password"
+				id="password"
+				type="password"
+				label="Contraseña"
+				[required]="true"
+				placeholder="Mínimo 8 caracteres"
+				[validationState]="fieldState('password')"
+				[warningMessage]="fieldMessage('password', 'warning')"
+				[errorMessage]="fieldMessage('password', 'error')"
+				[successMessage]="fieldMessage('password', 'success')"
+				[showSuccessMessage]="true"
+			></app-form-input>
+		</div>
+
+		<div class="form__group">
+			<app-form-input
+				formControlName="confirmPassword"
+				id="confirmPassword"
+				type="password"
+				label="Confirmar contraseña"
+				[required]="true"
+				placeholder="Repite tu contraseña"
+				[validationState]="fieldState('confirmPassword')"
+				[warningMessage]="fieldMessage('confirmPassword', 'warning')"
+				[errorMessage]="fieldMessage('confirmPassword', 'error')"
+				[successMessage]="fieldMessage('confirmPassword', 'success')"
+				[showSuccessMessage]="true"
+			></app-form-input>
+		</div>
+
+		<div class="form__group form__group--checkbox">
+			<app-form-checkbox formControlName="acceptTerms" id="acceptTerms" [required]="true">
+				Acepto los <a href="/terms" class="link">Términos de servicio</a> y la <a href="/privacy" class="link">Política de privacidad</a>
+			</app-form-checkbox>
+			@if (fieldState('acceptTerms') === 'warning' || fieldState('acceptTerms') === 'error') {
+				<span id="terms-error" class="form__error" role="alert">{{ fieldMessage('acceptTerms', fieldState('acceptTerms')) }}</span>
+			}
+		</div>
+
+		<app-button variant="primary" [label]="submitLabel" buttonType="submit" [fullWidth]="true" [disabled]="form.pending"></app-button>
+	</form>
+
+	<footer class="register__footer">
+		<p class="register__login">
+			¿Ya tienes una cuenta? <a routerLink="/login" class="link">Inicia sesión</a>
+		</p>
+	</footer>
+</section>
