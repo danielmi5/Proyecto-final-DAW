@@ -1,0 +1,13 @@
+<aside class="form-aside" aria-label="Info del formulario">
+	<div class="form-aside__content">
+		@if (eyebrow()) {
+			<p class="form-aside__eyebrow">{{ eyebrow() }}</p>
+		}
+		@if (title()) {
+			<h1 class="form-aside__title">{{ title() }}</h1>
+		}
+		@if (subtitle()) {
+			<p class="form-aside__subtitle">{{ subtitle() }}</p>
+		}
+	</div>
+</aside>
