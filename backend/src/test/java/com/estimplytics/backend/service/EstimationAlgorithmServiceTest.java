@@ -1,10 +1,13 @@
 package com.estimplytics.backend.service;
 
 import com.estimplytics.backend.dto.EstimationAlgorithmResultDTO;
+import com.estimplytics.backend.entity.ImpactAnalysis;
+import com.estimplytics.backend.entity.Request;
 import com.estimplytics.backend.exception.ImpactAnalysisNotFoundException;
 import com.estimplytics.backend.repository.ComponentAnalysisRepository;
 import com.estimplytics.backend.repository.EstimationRepository;
 import com.estimplytics.backend.repository.ImpactAnalysisRepository;
+import com.estimplytics.backend.repository.RedmineIssueMetadataRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,10 +15,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +35,9 @@ class EstimationAlgorithmServiceTest {
     @Mock
     private EstimationRepository estimationRepository;
 
+    @Mock
+    private RedmineIssueMetadataRepository redmineIssueMetadataRepository;
+
     @InjectMocks
     private EstimationAlgorithmService estimationAlgorithmService;
 
@@ -37,7 +45,7 @@ class EstimationAlgorithmServiceTest {
     void calculateSuggestionForAnalysisId_shouldThrowException_whenAnalysisDoesNotExist() {
         UUID analysisId = UUID.randomUUID();
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(false);
+        when(impactAnalysisRepository.findById(analysisId)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> estimationAlgorithmService.calculateSuggestionForAnalysisId(analysisId))
             .isInstanceOf(ImpactAnalysisNotFoundException.class)
@@ -47,8 +55,8 @@ class EstimationAlgorithmServiceTest {
     @Test
     void calculateSuggestionForAnalysisId_shouldReturnZeroValues_whenNoComponentsExist() {
         UUID analysisId = UUID.randomUUID();
+        stubAnalysisLookup(analysisId);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId)).thenReturn(List.of());
 
         EstimationAlgorithmResultDTO estimationAlgorithmResult = estimationAlgorithmService.calculateSuggestionForAnalysisId(analysisId);
@@ -62,8 +70,8 @@ class EstimationAlgorithmServiceTest {
         UUID analysisId = UUID.randomUUID();
         UUID firstComponentId = UUID.randomUUID();
         UUID secondComponentId = UUID.randomUUID();
+        stubAnalysisLookup(analysisId);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId))
                 .thenReturn(List.of(firstComponentId, secondComponentId));
         when(componentAnalysisRepository.findAnalysisIdsWithExactComponentSet(List.of(firstComponentId, secondComponentId), 2))
@@ -82,8 +90,8 @@ class EstimationAlgorithmServiceTest {
         UUID firstHistoricalAnalysisId = UUID.randomUUID();
         UUID secondHistoricalAnalysisId = UUID.randomUUID();
         UUID componentId = UUID.randomUUID();
+        stubAnalysisLookup(analysisId, firstHistoricalAnalysisId, secondHistoricalAnalysisId);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId)).thenReturn(List.of(componentId));
         when(componentAnalysisRepository.findAnalysisIdsWithExactComponentSet(List.of(componentId), 1))
             .thenReturn(List.of(analysisId, firstHistoricalAnalysisId, secondHistoricalAnalysisId));
@@ -103,8 +111,8 @@ class EstimationAlgorithmServiceTest {
         UUID secondHistoricalAnalysisId = UUID.randomUUID();
         UUID thirdHistoricalAnalysisId = UUID.randomUUID();
         UUID componentId = UUID.randomUUID();
+        stubAnalysisLookup(analysisId, firstHistoricalAnalysisId, secondHistoricalAnalysisId, thirdHistoricalAnalysisId);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId))
                 .thenReturn(List.of(componentId));
         when(componentAnalysisRepository.findAnalysisIdsWithExactComponentSet(List.of(componentId), 1))
@@ -130,8 +138,8 @@ class EstimationAlgorithmServiceTest {
         UUID historicalId4 = UUID.randomUUID();
         UUID historicalId5 = UUID.randomUUID();
         UUID historicalId6 = UUID.randomUUID();
+        stubAnalysisLookup(analysisId, historicalId1, historicalId2, historicalId3, historicalId4, historicalId5, historicalId6);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId)).thenReturn(List.of(componentId));
         when(componentAnalysisRepository.findAnalysisIdsWithExactComponentSet(List.of(componentId), 1))
             .thenReturn(List.of(analysisId, historicalId1, historicalId2, historicalId3, historicalId4, historicalId5, historicalId6));
@@ -152,8 +160,8 @@ class EstimationAlgorithmServiceTest {
         UUID secondHistoricalAnalysisId = UUID.randomUUID();
         UUID thirdHistoricalAnalysisId = UUID.randomUUID();
         UUID componentId = UUID.randomUUID();
+        stubAnalysisLookup(analysisId, firstHistoricalAnalysisId, secondHistoricalAnalysisId, thirdHistoricalAnalysisId);
 
-        when(impactAnalysisRepository.existsById(analysisId)).thenReturn(true);
         when(componentAnalysisRepository.findComponentIdsByAnalysisId(analysisId))
                 .thenReturn(List.of(componentId));
         when(componentAnalysisRepository.findAnalysisIdsWithExactComponentSet(List.of(componentId), 1))
@@ -167,5 +175,28 @@ class EstimationAlgorithmServiceTest {
 
         assertThat(estimationAlgorithmResult.getSuggestedTotalHours()).isEqualTo(32);
         assertThat(estimationAlgorithmResult.getFiabilityPercentage()).isEqualTo(65);
+    }
+
+    private void stubAnalysisLookup(UUID... analysisIds) {
+        when(impactAnalysisRepository.findById(any())).thenAnswer(invocation -> {
+            UUID id = invocation.getArgument(0);
+            for (UUID allowedId : analysisIds) {
+                if (allowedId.equals(id)) {
+                    return Optional.of(buildAnalysis(id));
+                }
+            }
+            return Optional.empty();
+        });
+        when(redmineIssueMetadataRepository.findByRequestId(any())).thenReturn(Optional.empty());
+    }
+
+    private ImpactAnalysis buildAnalysis(UUID analysisId) {
+        Request request = new Request();
+        request.setId(UUID.randomUUID());
+
+        ImpactAnalysis analysis = new ImpactAnalysis();
+        analysis.setId(analysisId);
+        analysis.setRequest(request);
+        return analysis;
     }
 }
