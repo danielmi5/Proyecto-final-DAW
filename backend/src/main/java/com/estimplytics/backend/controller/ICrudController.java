@@ -14,48 +14,48 @@ import org.springframework.web.bind.annotation.*;
 public interface ICrudController<Request, Response, Update, ID> {
     
     @GetMapping
-    @Operation(summary = "Obtener todos los registros", description = "Retorna una página con todos los registros disponibles")
+    @Operation(summary = "Get all records", description = "Returns a page with all available records")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Registros obtenidos exitosamente", content = @Content(mediaType = "application/json")),
-        @ApiResponse(responseCode = "401", description = "No autenticado"),
-        @ApiResponse(responseCode = "403", description = "No autorizado")
+        @ApiResponse(responseCode = "200", description = "Records retrieved successfully", content = @Content(mediaType = "application/json")),
+        @ApiResponse(responseCode = "401", description = "Unauthenticated"),
+        @ApiResponse(responseCode = "403", description = "Unauthorised")
     })
     ResponseEntity<Page<Response>> getAll(Pageable pageable);
     
     @GetMapping("/{id}")
-    @Operation(summary = "Obtener un registro por ID", description = "Retorna un registro específico por su identificador")
+    @Operation(summary = "Get a record by ID", description = "Returns a specific record by its identifier")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Registro encontrado", content = @Content(mediaType = "application/json")),
-        @ApiResponse(responseCode = "404", description = "Registro no encontrado"),
-        @ApiResponse(responseCode = "401", description = "No autenticado")
+        @ApiResponse(responseCode = "200", description = "Record found", content = @Content(mediaType = "application/json")),
+        @ApiResponse(responseCode = "404", description = "Record not found"),
+        @ApiResponse(responseCode = "401", description = "Unauthenticated")
     })
     ResponseEntity<Response> getById(@PathVariable ID id);
     
     @PostMapping
-    @Operation(summary = "Crear un nuevo registro", description = "Crea un nuevo registro con los datos proporcionados")
+    @Operation(summary = "Create a new record", description = "Creates a new record with the provided data")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Registro creado exitosamente", content = @Content(mediaType = "application/json")),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos"),
-        @ApiResponse(responseCode = "401", description = "No autenticado")
+        @ApiResponse(responseCode = "201", description = "Record created successfully", content = @Content(mediaType = "application/json")),
+        @ApiResponse(responseCode = "400", description = "Invalid data"),
+        @ApiResponse(responseCode = "401", description = "Unauthenticated")
     })
     ResponseEntity<Response> create(@RequestBody Request request);
     
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar un registro", description = "Actualiza un registro existente con los nuevos datos")
+    @Operation(summary = "Update a record", description = "Updates an existing record with new data")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Registro actualizado exitosamente", content = @Content(mediaType = "application/json")),
-        @ApiResponse(responseCode = "404", description = "Registro no encontrado"),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos"),
-        @ApiResponse(responseCode = "401", description = "No autenticado")
+        @ApiResponse(responseCode = "200", description = "Record updated successfully", content = @Content(mediaType = "application/json")),
+        @ApiResponse(responseCode = "404", description = "Record not found"),
+        @ApiResponse(responseCode = "400", description = "Invalid data"),
+        @ApiResponse(responseCode = "401", description = "Unauthenticated")
     })
     ResponseEntity<Response> update(@PathVariable ID id, @RequestBody Update updateRequest);
     
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar un registro", description = "Elimina un registro específico por su identificador")
+    @Operation(summary = "Delete a record", description = "Deletes a specific record by its identifier")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "204", description = "Registro eliminado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Registro no encontrado"),
-        @ApiResponse(responseCode = "401", description = "No autenticado")
+        @ApiResponse(responseCode = "204", description = "Record deleted successfully"),
+        @ApiResponse(responseCode = "404", description = "Record not found"),
+        @ApiResponse(responseCode = "401", description = "Unauthenticated")
     })
     ResponseEntity<Void> delete(@PathVariable ID id);
 }
