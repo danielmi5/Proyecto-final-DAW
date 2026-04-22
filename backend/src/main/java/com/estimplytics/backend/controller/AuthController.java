@@ -37,11 +37,11 @@ public class AuthController {
     }
 
     @PostMapping("/token")
-    @Operation(summary = "Iniciar sesión", description = "Autentica al usuario y devuelve un token JWT")
+    @Operation(summary = "Login", description = "Authenticates the user and returns a JWT token")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Token generado exitosamente"),
-        @ApiResponse(responseCode = "400", description = "Petición inválida"),
-        @ApiResponse(responseCode = "401", description = "Credenciales inválidas")
+        @ApiResponse(responseCode = "200", description = "Token generated successfully"),
+        @ApiResponse(responseCode = "400", description = "Invalid request"),
+        @ApiResponse(responseCode = "401", description = "Invalid credentials")
     })
     public ResponseEntity<TokenResponseDTO> login(@Valid @RequestBody TokenRequestDTO request) {
         Authentication authentication;
@@ -64,10 +64,10 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    @Operation(summary = "Cerrar sesión", description = "Invalida el token JWT actual")
+    @Operation(summary = "Logout", description = "Invalidates the current JWT token")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Sesión cerrada exitosamente"),
-        @ApiResponse(responseCode = "400", description = "Token no proporcionado o inválido")
+        @ApiResponse(responseCode = "200", description = "Session logged out successfully"),
+        @ApiResponse(responseCode = "400", description = "Token not provided or invalid")
     })
     public ResponseEntity<Void> logout(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");

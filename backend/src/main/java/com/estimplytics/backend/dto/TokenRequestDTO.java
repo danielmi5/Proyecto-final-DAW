@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class TokenRequestDTO {
     @NotBlank
     @Email
-    @Schema(description = "Correo electrónico del usuario", example = "daniel@estymplytics.es")
+    @Schema(description = "User email", example = "daniel@estymplytics.es")
     private String email;
     @NotBlank
-    @Schema(description = "Contraseña del usuario", example = "Zx23edfzTF")
+    @Schema(description = "User password", example = "Zx23edfzTF")
     private String password;
 }

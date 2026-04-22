@@ -12,21 +12,21 @@ import java.time.LocalDateTime;
 @Builder
 public class ApiErrorDTO {
 
-    @Schema(description = "Fecha y hora del error", example = "2026-05-08T08:00:00")
+    @Schema(description = "Error timestamp", example = "2026-05-08T08:00:00")
     private LocalDateTime timestamp;
 
-    @Schema(description = "Código numérico del estado HTTP", example = "400")
+    @Schema(description = "Numeric HTTP status code", example = "400")
     private int stateNum;
 
-    @Schema(description = "Nombre del error", example = "Bad Request")
+    @Schema(description = "Error name", example = "Bad Request")
     private String error;
 
-    @Schema(description = "Mensaje descriptivo", example = "Validación fallida")
+    @Schema(description = "Descriptive message", example = "Validation failed")
     private String message;
 
-    @Schema(description = "Descripción de la petición", example = "uri=/api/users")
+    @Schema(description = "Request description", example = "uri=/api/users")
     private String description;
 
-    @Schema(description = "Ruta que produjo el error", example = "/api/users")
+    @Schema(description = "Path that produced the error", example = "/api/users")
     private String path;
 }

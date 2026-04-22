@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserRequestDTO {
     
-    @Schema(description = "Nombre completo del usuario", example = "Daniel")
+    @Schema(description = "User full name", example = "Daniel")
     private String name;
 
     @NotBlank
-    @Schema(description = "Correo electrónico único del usuario", example = "daniel@estymplytics.es")
+    @Schema(description = "User unique email address", example = "daniel@estimplytics.es")
     private String email;
 
     @NotBlank
-    @Schema(description = "Contraseña en texto plano", example = "Zx23edfzTF")
+    @Schema(description = "Password hashed", example = "Zx23edfzTF")
     private String password;
 
     @NotBlank
-    @Schema(description = "Rol del usuario (ADMIN, ANALYST)", example = "ANALYST")
+    @Schema(description = "User role (ADMIN, ANALYST)", example = "ANALYST")
     private String role;
 }

@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class TokenResponseDTO {
-    @Schema(description = "Token JWT de acceso", example = "eyJhbGciOiJIUzI1NiJ9...")
+    @Schema(description = "Access JWT token", example = "eyJhbGciOiJIUzI1NiJ9...")
     private String accessToken;
-    @Schema(description = "Tipo de token", example = "Bearer")
+    @Schema(description = "Token type", example = "Bearer")
     private String tokenType;
-    @Schema(description = "Tiempo de expiración en milisegundos", example = "3600000")
+    @Schema(description = "Expiration time in milliseconds", example = "3600000")
     private long expiresIn;
 }
