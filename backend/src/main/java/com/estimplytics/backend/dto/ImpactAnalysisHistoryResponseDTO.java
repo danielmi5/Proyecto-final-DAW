@@ -15,16 +15,16 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ImpactAnalysisHistoryResponseDTO {
-    @Schema(description = "Identificador del historial", example = "1")
+    @Schema(description = "History identifier", example = "1")
     private Long id;
-    @Schema(description = "Identificador del análisis de impacto", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Impact analysis identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID analysisId;
-    @Schema(description = "Versión congelada", example = "1")
+    @Schema(description = "Frozen version", example = "1")
     private Integer frozenVersion;
-    @Schema(description = "Datos históricos del análisis", example = "{\"title\":\"Análisis base\"}")
+    @Schema(description = "Historical analysis data", example = "{\"title\":\"Base analysis\"}")
     private Map<String, Object> snapshotData;
-    @Schema(description = "Snapshot de componentes", example = "{\"componentCount\":5}")
+    @Schema(description = "Components snapshot", example = "{\"componentCount\":5}")
     private Map<String, Object> componentsSnapshot;
-    @Schema(description = "Fecha y hora de modificación", example = "2026-05-08T08:30:00")
+    @Schema(description = "Modification date and time", example = "2026-05-08T08:30:00")
     private LocalDateTime modifiedAt;
 }

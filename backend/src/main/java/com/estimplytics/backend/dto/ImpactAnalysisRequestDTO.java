@@ -16,20 +16,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ImpactAnalysisRequestDTO {
-    @Schema(description = "Identificador de la petición base", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Base request identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID requestId;
-    @Schema(description = "Identificador del usuario", example = "550e8400-e29b-41d4-a716-446655440111")
+    @Schema(description = "User identifier", example = "550e8400-e29b-41d4-a716-446655440111")
     private UUID userId;
 
     @NotNull
-    @Schema(description = "Número de versión", example = "1")
+    @Schema(description = "Version number", example = "1")
     private Integer versionNumber;
 
     @NotBlank
-    @Schema(description = "Nivel de complejidad", example = "HIGH")
+    @Schema(description = "Complexity level", example = "HIGH")
     private String complexity;
 
     @NotNull
-    @Schema(description = "Datos del documento de análisis", example = "{\"title\":\"Análisis base\",\"notes\":\"Incluye dependencias\"}")
+    @Schema(description = "Analysis document data", example = "{\"title\":\"Base analysis\",\"notes\":\"Includes dependencies\"}")
     private Map<String, Object> documentData;
 }

@@ -17,18 +17,18 @@ import java.util.UUID;
 @Builder
 public class EstimationHistoryRequestDTO {
     @NotNull
-    @Schema(description = "Identificador de la estimación", example = "550e8400-e29b-41d4-a716-446655440000")
-    private UUID estimationId;
+        @Schema(description = "Estimation identifier", example = "550e8400-e29b-41d4-a716-446655440000")
+        private UUID estimationId;
 
     @NotNull
-    @Schema(description = "Versión congelada", example = "1")
-    private Integer frozenVersion;
+        @Schema(description = "Frozen version", example = "1")
+        private Integer frozenVersion;
 
     @NotNull
-    @Schema(description = "Datos históricos de la estimación", example = "{\"hoursAn\":10,\"hoursAs\":20}")
-    private Map<String, Object> snapshotData;
+        @Schema(description = "Historical estimation data", example = "{\"hoursAn\":10,\"hoursAs\":20}")
+        private Map<String, Object> snapshotData;
 
     @NotNull
-    @Schema(description = "Fecha y hora de modificación", example = "2026-05-08T08:30:00")
-    private LocalDateTime modifiedAt;
+        @Schema(description = "Modification date and time", example = "2026-05-08T08:30:00")
+        private LocalDateTime modifiedAt;
 }

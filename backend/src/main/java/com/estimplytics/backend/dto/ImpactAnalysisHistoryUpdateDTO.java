@@ -16,18 +16,18 @@ import java.util.Map;
 @Builder
 public class ImpactAnalysisHistoryUpdateDTO {
     @NotNull
-    @Schema(description = "Versión congelada", example = "2")
+    @Schema(description = "Frozen version", example = "2")
     private Integer frozenVersion;
 
     @NotNull
-    @Schema(description = "Datos históricos del análisis", example = "{\"title\":\"Análisis actualizado\"}")
+    @Schema(description = "Historical analysis data", example = "{\"title\":\"Updated analysis\"}")
     private Map<String, Object> snapshotData;
 
     @NotNull
-    @Schema(description = "Snapshot de componentes", example = "{\"componentCount\":6}")
+    @Schema(description = "Components snapshot", example = "{\"componentCount\":6}")
     private Map<String, Object> componentsSnapshot;
 
     @NotNull
-    @Schema(description = "Fecha y hora de modificación", example = "2026-05-08T09:00:00")
+    @Schema(description = "Modification date and time", example = "2026-05-08T09:00:00")
     private LocalDateTime modifiedAt;
 }

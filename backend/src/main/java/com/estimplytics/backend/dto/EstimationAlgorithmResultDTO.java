@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class EstimationAlgorithmResultDTO {
-    @Schema(description = "Horas totales sugeridas por el algoritmo", example = "35")
+    @Schema(description = "Total hours suggested by the algorithm", example = "35")
     private Integer suggestedTotalHours;
-    @Schema(description = "Porcentaje de fiabilidad sugerido", example = "85")
+    @Schema(description = "Suggested confidence percentage", example = "85")
     private Integer fiabilityPercentage;
 }

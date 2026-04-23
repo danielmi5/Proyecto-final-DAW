@@ -13,28 +13,28 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class EstimationResponseDTO {
-    @Schema(description = "Identificador único de la estimación", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Estimation unique identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID id;
-    @Schema(description = "Identificador del análisis asociado", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Associated analysis identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID analysisId;
-    @Schema(description = "Número de versión", example = "1")
+    @Schema(description = "Version number", example = "1")
     private Integer versionNumber;
-    @Schema(description = "Porcentaje de fiabilidad", example = "85")
+    @Schema(description = "Confidence percentage", example = "85")
     private Integer fiability;
-    @Schema(description = "Horas estimadas para análisis", example = "10")
+    @Schema(description = "Estimated hours for analysis", example = "10")
     private Integer hoursAn;
-    @Schema(description = "Horas estimadas para desarrollo", example = "20")
+    @Schema(description = "Estimated hours for development", example = "20")
     private Integer hoursAs;
-    @Schema(description = "Horas estimadas para despliegue", example = "5")
+    @Schema(description = "Estimated hours for deployment", example = "5")
     private Integer hoursDe;
-    @Schema(description = "Horas totales", example = "35")
+    @Schema(description = "Total hours", example = "35")
     private Integer totalHours;
-    @Schema(description = "Feedback de horas reales", example = "32")
+    @Schema(description = "Actual hours feedback", example = "32")
     private Integer actualHoursFeedback;
-    @Schema(description = "Justificación de la estimación", example = "Se reutiliza infraestructura existente")
+    @Schema(description = "Justification for the estimation", example = "Existing infrastructure reuse")
     private String justification;
-    @Schema(description = "Fecha de creación", example = "2026-05-08T08:00:00")
+    @Schema(description = "Creation date", example = "2026-05-08T08:00:00")
     private LocalDateTime createdAt;
-    @Schema(description = "Fecha de actualización", example = "2026-05-08T09:00:00")
+    @Schema(description = "Update date", example = "2026-05-08T09:00:00")
     private LocalDateTime updatedAt;
 }

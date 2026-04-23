@@ -15,25 +15,25 @@ import java.time.LocalDateTime;
 @Builder
 public class EstimationUpdateDTO {
     @NotNull
-    @Schema(description = "Número de versión", example = "2")
+    @Schema(description = "Version number", example = "2")
     private Integer versionNumber;
 
-    @Schema(description = "Porcentaje de fiabilidad", example = "90")
+    @Schema(description = "Confidence percentage", example = "90")
     private Integer fiability;
-    @Schema(description = "Horas estimadas para análisis", example = "8")
+    @Schema(description = "Estimated hours for analysis", example = "8")
     private Integer hoursAn;
-    @Schema(description = "Horas estimadas para desarrollo", example = "18")
+    @Schema(description = "Estimated hours for development", example = "18")
     private Integer hoursAs;
-    @Schema(description = "Horas estimadas para despliegue", example = "4")
+    @Schema(description = "Estimated hours for deployment", example = "4")
     private Integer hoursDe;
-    @Schema(description = "Horas totales", example = "30")
+    @Schema(description = "Total hours", example = "30")
     private Integer totalHours;
-    @Schema(description = "Feedback de horas reales", example = "29")
+    @Schema(description = "Actual hours feedback", example = "29")
     private Integer actualHoursFeedback;
-    @Schema(description = "Justificación de la estimación", example = "Ajuste tras revisión técnica")
+    @Schema(description = "Justification for the estimation", example = "Adjustment after technical review")
     private String justification;
 
     @NotNull
-    @Schema(description = "Fecha y hora de actualización", example = "2026-05-08T09:00:00")
+    @Schema(description = "Update date and time", example = "2026-05-08T09:00:00")
     private LocalDateTime updatedAt;
 }
