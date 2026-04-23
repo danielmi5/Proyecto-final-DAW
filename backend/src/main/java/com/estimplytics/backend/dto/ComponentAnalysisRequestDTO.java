@@ -13,8 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ComponentAnalysisRequestDTO {
-    @Schema(description = "Identificador del análisis", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Analysis identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID analysisId;
-    @Schema(description = "Identificador del componente", example = "550e8400-e29b-41d4-a716-446655440111")
+    @Schema(description = "Component identifier", example = "550e8400-e29b-41d4-a716-446655440111")
     private UUID componentId;
 }

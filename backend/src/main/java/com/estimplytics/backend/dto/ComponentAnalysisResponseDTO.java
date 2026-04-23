@@ -14,12 +14,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ComponentAnalysisResponseDTO {
-    @Schema(description = "Identificador único", example = "550e8400-e29b-41d4-a716-446655440222")
+    @Schema(description = "Unique identifier", example = "550e8400-e29b-41d4-a716-446655440222")
     private UUID id;
-    @Schema(description = "Identificador del análisis", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Analysis identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID analysisId;
-    @Schema(description = "Identificador del componente", example = "550e8400-e29b-41d4-a716-446655440111")
+    @Schema(description = "Component identifier", example = "550e8400-e29b-41d4-a716-446655440111")
     private UUID componentId;
-    @Schema(description = "Fecha y hora de creación", example = "2026-05-08T08:00:00")
+    @Schema(description = "Creation date and time", example = "2026-05-08T08:00:00")
     private LocalDateTime createdAt;
 }

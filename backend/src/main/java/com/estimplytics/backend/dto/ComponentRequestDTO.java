@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ComponentRequestDTO {
     @NotBlank
-    @Schema(description = "Nombre del componente", example = "API Gateway")
+    @Schema(description = "Component name", example = "API Gateway")
     private String name;
 
     @NotBlank
-    @Schema(description = "Categoría del componente", example = "INFRASTRUCTURE")
+    @Schema(description = "Component category", example = "INFRASTRUCTURE")
     private String category;
 
     @NotNull
-    @Schema(description = "Indica si el componente está activo", example = "true")
+    @Schema(description = "Indicates whether the component is active", example = "true")
     private Boolean active;
 }
