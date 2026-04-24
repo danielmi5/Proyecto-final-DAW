@@ -9,7 +9,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "requests")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,17 +20,9 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "redmine_id")
-    private Integer redmineId;
-
-    @Column(name = "origin_request_code", length = 50)
-    private String originRequestCode;
-
-    @Column(name = "project_name", length = 100, nullable = false)
-    private String projectName;
-
-    @Column(name = "demand_type", length = 50)
-    private String demandType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     @Column(length = 255, nullable = false)
     private String title;
@@ -43,26 +36,14 @@ public class Request {
     @Column(length = 20, nullable = false)
     private String priority;
 
-    @Column(name = "assignee_name", length = 100)
-    private String assigneeName;
-
-    @Column(name = "author_name", length = 100)
-    private String authorName;
+    @Column(name = "demand_type", length = 50)
+    private String demandType;
 
     @Column(name = "start_date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
-
-    @Column(name = "redmine_created_date")
-    private LocalDateTime redmineCreatedDate;
-
-    @Column(name = "redmine_updated_date")
-    private LocalDateTime redmineUpdatedDate;
-
-    @Column(name = "redmine_closed_date")
-    private LocalDateTime redmineClosedDate;
 
     @Column(name = "done_ratio")
     private Integer doneRatio;

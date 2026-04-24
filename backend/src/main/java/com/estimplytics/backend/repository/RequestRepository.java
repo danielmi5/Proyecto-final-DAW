@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, UUID> {
-    Optional<Request> findByRedmineId(Integer redmineId);
+    boolean existsByProjectId(UUID projectId);
 }

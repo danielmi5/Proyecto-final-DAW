@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RequestUpdateDTO {
-    @Schema(description = "Título de la petición", example = "Implementar login social")
+    @Schema(description = "Request title", example = "Implement social login")
     private String title;
-    @Schema(description = "Descripción detallada", example = "Permitir acceso mediante Google y GitHub")
+    @Schema(description = "Detailed description", example = "Allow access via Google and GitHub")
     private String description;
-    @Schema(description = "Estado de la petición", example = "IN_PROGRESS")
+    @Schema(description = "Request status", example = "IN_PROGRESS")
     private String status;
 }

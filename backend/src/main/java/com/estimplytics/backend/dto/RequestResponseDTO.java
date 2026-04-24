@@ -15,45 +15,49 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class RequestResponseDTO {
-    @Schema(description = "Identificador único de la petición", example = "550e8400-e29b-41d4-a716-446655440000")
+    @Schema(description = "Request unique identifier", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID id;
-    @Schema(description = "Identificador Redmine de la petición", example = "12345")
+
+    @Schema(description = "Manual project identifier", example = "550e8400-e29b-41d4-a716-446655440000")
+    private UUID projectId;
+
+    @Schema(description = "Redmine request identifier", example = "12345")
     private Integer redmineId;
-    @Schema(description = "Código de la petición de redmine", example = "REQ-001")
+    @Schema(description = "Redmine request code", example = "REQ-001")
     private String originRequestCode;
-    @Schema(description = "Nombre del proyecto", example = "Portal Web")
+    @Schema(description = "Project name", example = "Web Portal")
     private String projectName;
-    @Schema(description = "Tipo de demanda", example = "FEATURE")
+    @Schema(description = "Demand type", example = "FEATURE")
     private String demandType;
-    @Schema(description = "Título de la petición", example = "Implementar login social")
+    @Schema(description = "Request title", example = "Implement social login")
     private String title;
-    @Schema(description = "Descripción detallada", example = "Permitir acceso mediante Google y GitHub")
+    @Schema(description = "Detailed description", example = "Allow access via Google and GitHub")
     private String description;
-    @Schema(description = "Estado de la petición", example = "OPEN")
+    @Schema(description = "Request status", example = "OPEN")
     private String status;
-    @Schema(description = "Prioridad de la petición", example = "HIGH")
+    @Schema(description = "Request priority", example = "HIGH")
     private String priority;
-    @Schema(description = "Nombre del responsable asignado", example = "Daniel")
+    @Schema(description = "Assigned person's name", example = "Daniel")
     private String assigneeName;
-    @Schema(description = "Nombre del autor", example = "Daniel")
+    @Schema(description = "Author name", example = "Daniel")
     private String authorName;
-    @Schema(description = "Fecha de inicio planificada", example = "2026-05-10")
+    @Schema(description = "Planned start date", example = "2026-05-10")
     private LocalDate startDate;
-    @Schema(description = "Fecha de fin planificada", example = "2026-05-20")
+    @Schema(description = "Planned end date", example = "2026-05-20")
     private LocalDate endDate;
-    @Schema(description = "Fecha de creación en el sistema de redmine", example = "2026-05-08T08:00:00")
+    @Schema(description = "Creation date in Redmine system", example = "2026-05-08T08:00:00")
     private LocalDateTime redmineCreatedDate;
-    @Schema(description = "Fecha de última actualización en el sistema de redmine", example = "2026-05-09T10:00:00")
+    @Schema(description = "Last update date in Redmine system", example = "2026-05-09T10:00:00")
     private LocalDateTime redmineUpdatedDate;
-    @Schema(description = "Fecha de cierre en el sistema de redmine", example = "2026-05-15T18:00:00")
+    @Schema(description = "Closure date in Redmine system", example = "2026-05-15T18:00:00")
     private LocalDateTime redmineClosedDate;
-    @Schema(description = "Porcentaje de avance (0-100)", example = "50")
+    @Schema(description = "Progress percentage (0-100)", example = "50")
     private Integer doneRatio;
-    @Schema(description = "Horas estimadas", example = "40.5")
+    @Schema(description = "Estimated hours", example = "40.5")
     private Double estimatedHours;
-    @Schema(description = "Horas imputadas/gastadas", example = "10.0")
+    @Schema(description = "Logged/spent hours", example = "10.0")
     private Double spentHours;
 
-    @Schema(description = "Fecha y hora de creación", example = "2026-05-08T08:00:00")
+    @Schema(description = "Creation date and time", example = "2026-05-08T08:00:00")
     private LocalDateTime createdDate;
 }
