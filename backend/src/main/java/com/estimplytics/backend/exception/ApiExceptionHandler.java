@@ -33,6 +33,12 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Request not found"));
     }
 
+    @ExceptionHandler(ProjectNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleProjectNotFoundException(ProjectNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Project not found"));
+    }
+
     @ExceptionHandler(ImpactAnalysisNotFoundException.class)
     public ResponseEntity<ApiErrorDTO> handleImpactAnalysisNotFoundException(ImpactAnalysisNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
@@ -89,6 +95,18 @@ public class ApiExceptionHandler {
     public ResponseEntity<ApiErrorDTO> handleRedmineIntegrationException(RedmineIntegrationException e, HttpServletRequest request) {
         HttpStatus status = determineStatusFromErrorType(e.getErrorType());
         return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Redmine integration error"));
+    }
+
+    @ExceptionHandler(RedmineCredentialNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleRedmineCredentialNotFoundException(RedmineCredentialNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Redmine credential not found"));
+    }
+
+    @ExceptionHandler(RedmineInstanceNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleRedmineInstanceNotFoundException(RedmineInstanceNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return ResponseEntity.status(status).body(createErrorBody(status, request, e, "Redmine instance not found"));
     }
 
     private HttpStatus determineStatusFromErrorType(RedmineIntegrationException.ErrorType errorType) {
