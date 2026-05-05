@@ -1,0 +1,89 @@
+@use "../../00-settings/variables" as *;
+@use "../../01-tools/mixins" as mixins;
+
+.activity-card {
+    padding: var(--spacing-lg);
+
+    @include mixins.flex(row, var(--spacing-md), flex-start, stretch);
+
+    border-radius: 1.25rem;
+    background: var(--bg-cards);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+
+    &__icon {
+        width: 6rem;
+        height: 6rem;
+
+        @include mixins.flex-center();
+
+        border-radius: 1rem;
+
+        svg {
+            width: 2.4rem;
+            height: 2.4rem;
+
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        &--document {
+            color: var(--color-category-3);
+        }
+
+        &--estimation {
+            color: var(--color-secondary-4);
+        }
+
+        &--analysis {
+            color: var(--color-category-5);
+        }
+    }
+
+    &__content {
+        min-width: 0;
+
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+
+        h3 {
+            margin: 0 0 var(--spacing-xs);
+
+            color: var(--text);
+
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-600);
+        }
+
+        p {
+            margin: 0 0 var(--spacing-sm);
+
+            color: var(--card-label);
+
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+    }
+
+    &__meta {
+        @include mixins.flex(row, var(--spacing-md), flex-start, center);
+
+        color: var(--card-label);
+
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-600);
+    }
+
+    &__meta-user {
+        color: var(--text-important);
+    }
+
+    @media (max-width: $breakpoint-md) {
+        align-items: flex-start;
+    }
+}

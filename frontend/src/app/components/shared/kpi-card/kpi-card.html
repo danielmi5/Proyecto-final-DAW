@@ -1,0 +1,10 @@
+<article class="kpi-card">
+  <div class="kpi-card__top">
+    <i class="kpi-card__icon" [class]="'kpi-card__icon--' + kpi().icon" [feather]="kpiIcon()" variant="submenu" aria-hidden="true"></i>
+    <span class="kpi-card__change" [class]="'kpi-card__change--' + kpi().changeType">{{ kpi().change }}</span>
+  </div>
+
+  <div class="kpi-card__value">{{ kpi().value }}</div>
+  <h3 class="kpi-card__label">{{ kpi().label }}</h3>
+  <p class="kpi-card__description">{{ kpi().description }}</p>
+</article>

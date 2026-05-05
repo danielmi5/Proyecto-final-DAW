@@ -1,0 +1,14 @@
+<article class="activity-card">
+  <div class="activity-card__icon" [class]="'activity-card__icon--' + activity().type">
+    <i [feather]="activityIcon()" aria-hidden="true"></i>
+  </div>
+
+  <div class="activity-card__content">
+    <h3>{{ activity().title }}</h3>
+    <p>{{ activity().description }}</p>
+    <div class="activity-card__meta">
+      <span class="activity-card__meta-user">{{ activity().user }}</span>
+      <span>{{ activity().time }}</span>
+    </div>
+  </div>
+</article>
