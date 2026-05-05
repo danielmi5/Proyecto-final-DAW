@@ -1,0 +1,9 @@
+<section class="metrics-summary">
+  <section class="o-container--section">
+    <section class="metrics-summary__grid">
+      @for (kpi of kpis(); track kpi.id) {
+        <app-kpi-card [kpi]="kpi"></app-kpi-card>
+      }
+    </section>
+  </section>
+</section>
