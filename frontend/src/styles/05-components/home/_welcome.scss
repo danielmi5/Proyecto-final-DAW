@@ -1,0 +1,115 @@
+@use "../../00-settings/variables" as *;
+@use "../../01-tools/mixins" as mixins;
+
+.welcome {
+    padding: var(--spacing-2xl) var(--spacing-3xl) var(--spacing-2xl);
+
+    position: relative;
+    overflow: hidden;
+
+    background: var(--bg-modals);
+
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
+        gap: var(--spacing-2xl);
+        align-items: center;
+    }
+
+    &__copy {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__greeting {
+        display: inline-flex;
+        margin-bottom: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+
+        border-radius: var(--radius-full);
+        background: var(--bg-info);
+
+        color: var(--text-important);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-600);
+        letter-spacing: 0.02em;
+    }
+
+    &__title {
+        margin: 0 0 var(--spacing-md);
+
+        color: var(--text);
+        font-family: var(--font-secondary);
+        font-size: clamp(2.2rem, 4vw, 4.1rem);
+        font-weight: var(--font-weight-700);
+        line-height: 1.02;
+
+        span {
+            color: var(--text-important);
+        }
+    }
+
+    &__subtitle {
+        max-width: 40rem;
+
+        color: var(--card-label);
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-relaxed);
+    }
+
+    &__actions {
+        @include mixins.flex(row, var(--spacing-md), flex-start, center);
+        flex-wrap: wrap;
+        margin-top: var(--spacing-xl);
+    }
+
+    &__labels {
+        @include mixins.flex(row, var(--spacing-sm), flex-start, center);
+        flex-wrap: wrap;
+        margin-top: var(--spacing-xl);
+        padding: 0;
+
+        list-style: none;
+
+        li {
+            padding: var(--spacing-xs) var(--spacing-sm);
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            background: var(--bg-cards);
+            box-shadow: var(--shadow-sm);
+
+            color: var(--text);
+            font-size: var(--font-size-sm);
+
+            backdrop-filter: blur(10px);
+        }
+    }
+
+    &__visual {
+        position: relative;
+        z-index: 1;
+
+        @include mixins.flex(row, 0, center, center);
+    }
+
+    @media (max-width: $breakpoint-lg) {
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        padding-top: var(--spacing-3xl);
+    }
+
+    @media (max-width: 420px) {
+        &__actions {
+            flex-direction: column;
+
+            .button {
+                width: 100%;
+            }
+        }
+    }
+}
