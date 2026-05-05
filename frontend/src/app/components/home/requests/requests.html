@@ -1,0 +1,55 @@
+<section class="requests">
+  <section class="o-container--section">
+    <header class="requests__header">
+      <div class="requests__heading">
+        <h2 class="requests__title">Peticiones pendientes</h2>
+
+        <a routerLink="/requests" class="requests__link">
+          Ver todas
+          <i feather="arrow-right" variant="botones" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <p class="requests__subtitle">Sincronizadas desde Redmine</p>
+    </header>
+
+    <section class="requests__table-wrap">
+      <table class="requests__table">
+        <thead>
+          <tr>
+            <th>Ticket ID</th>
+            <th>Título</th>
+            <th>Fuente</th>
+            <th>Fecha</th>
+            <th>Prioridad</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (request of requests(); track request.id) {
+            <tr>
+              <td><span class="requests__ticket">{{ request.id }}</span></td>
+              <td class="requests__title">{{ request.title }}</td>
+              <td><span class="requests__source">{{ request.source }}</span></td>
+              <td class="requests__date">{{ request.date }}</td>
+              <td>
+                <app-badge [baseClass]="'requests__priority'" [tone]="request.priority">
+                  {{ request.priority | titlecase }}
+                </app-badge>
+              </td>
+              <td>
+                <app-button
+                  variant="secondary"
+                  size="sm"
+                  label="Iniciar análisis"
+                  icon="play"
+                  routerLink="">
+                </app-button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </section>
+</section>
