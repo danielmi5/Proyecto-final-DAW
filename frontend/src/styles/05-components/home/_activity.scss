@@ -1,0 +1,60 @@
+@use "../../00-settings/variables" as *;
+@use "../../01-tools/mixins" as mixins;
+
+.activity {
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    &__heading {
+        @include mixins.flex(row, var(--spacing-lg), space-between, center);
+    }
+
+    &__title {
+        margin: 0;
+        color: var(--text);
+        font-family: var(--font-secondary);
+        font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+        font-weight: var(--font-weight-700);
+    }
+
+    &__subtitle {
+        margin: 0;
+        @include mixins.typography(paragraph, var(--card-label));
+    }
+
+    &__link {
+        @include mixins.flex(row, var(--spacing-sm), flex-start, center);
+        color: var(--text-important);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-600);
+        text-decoration: none;
+        line-height: 1;
+
+        .feather-icon,
+        .feather-icon svg {
+            display: block;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    @media (max-width: $breakpoint-md) {
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
