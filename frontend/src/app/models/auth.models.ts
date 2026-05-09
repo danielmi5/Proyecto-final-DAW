@@ -1,27 +1,32 @@
-// Interfaz para la petición de inicio de sesión
 export interface LoginRequest {
   email: string;
   password: string;
 }
 
-// Interfaz para la petición de registro de nuevo usuario
 export interface RegisterRequest {
-  nombre: string;
-  apellidos: string;
+  name: string;
   email: string;
   password: string;
 }
 
-// Interfaz para la respuesta de autenticación exitosa
-export interface AuthResponse {
-  token: string; // Token JWT
+export interface TokenResponse {
+  accessToken: string;
+  tokenType: string;
+  expiresIn: number;
 }
 
-// Token JWT decodificado
+export interface AuthResponse {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
 export interface DecodedToken {
-  sub: string; // Email del usuario
-  roles: { authority: string }[];
-  exp: number; // Expiración (timestamp en segundos)
-  iat: number; // Emisión (timestamp en segundos)
+  sub: string;
+  name?: string;
+  roles?: { authority: string }[];
+  exp: number;
+  iat: number;
   id?: number | null;
 }
