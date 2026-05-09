@@ -1,3 +1,4 @@
+@use "../00-settings/variables" as *;
 @use "../01-tools/mixins" as mixins;
 
 .o-container {
@@ -31,4 +32,14 @@
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
 
+.o-container--section {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 var(--spacing-xl);
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 var(--spacing-lg);
+  }
+}
 

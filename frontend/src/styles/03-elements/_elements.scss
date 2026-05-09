@@ -2,8 +2,8 @@ body {
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
-  color: var(--color-neutral-6);
-  background-color: var(--color-neutral-1);
+  color: var(--text);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,7 +16,7 @@ h5,
 h6 {
   font-family: var(--font-secondary);
   line-height: var(--line-height-tight);
-  color: var(--color-neutral-7);
+  color: var(--text);
 }
 
 h1 {
@@ -43,13 +43,13 @@ h6 {
   font-size: var(--font-size-lg);
 }
 
-a {
-  color: var(--color-primary-base);
+a:not(.button):not([class*="button"]) {
+  color: var(--text-important);
   text-decoration: none;
   transition: color var(--transition-fast) ease-in-out;
 }
 
-a:hover,
-a:focus-visible {
-  color: var(--color-primary-dark);
+a:not(.button):not([class*="button"]):hover,
+a:not(.button):not([class*="button"]):focus-visible {
+  color: var(--link-form);
 }

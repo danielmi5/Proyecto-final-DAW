@@ -22,7 +22,7 @@
   }
 }
 
-@mixin typography($type, $color: var(--color-neutral-7)) {
+@mixin typography($type, $color: var(--text)) {
   @if $type == h1 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-5xl);
@@ -40,28 +40,28 @@
   } @else if $type == h3 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-700);
     line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h4 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-700);
     line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h5 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-700);
     line-height: var(--line-height-tight);
     margin: 0;
     color: $color;
   } @else if $type == h6 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-700);
     line-height: var(--line-height-tight);
     margin: 0;
     color: $color;

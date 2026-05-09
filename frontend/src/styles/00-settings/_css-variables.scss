@@ -1,14 +1,6 @@
 @use "./variables" as *;
 
 :root {
-  --color-primary-lightest: #{$color-primary-lightest};
-  --color-primary-lighter: #{$color-primary-lighter};
-  --color-primary-light: #{$color-primary-light};
-  --color-primary-base: #{$color-primary-base};
-  --color-primary-dark: #{$color-primary-dark};
-  --color-primary-darker: #{$color-primary-darker};
-  --color-primary-darkest: #{$color-primary-darkest};
-
   --color-secondary-1: #{$color-secondary-1-dark};
   --color-secondary-2: #{$color-secondary-2-dark};
   --color-secondary-3: #{$color-secondary-3-dark};
@@ -20,14 +12,6 @@
   --color-category-3: #{$color-category-dark-3};
   --color-category-4: #{$color-category-dark-4};
   --color-category-5: #{$color-category-dark-5};
-
-  --color-neutral-1: #{$color-neutral-1};
-  --color-neutral-2: #{$color-neutral-2};
-  --color-neutral-3: #{$color-neutral-3};
-  --color-neutral-4: #{$color-neutral-4};
-  --color-neutral-5: #{$color-neutral-5};
-  --color-neutral-6: #{$color-neutral-6};
-  --color-neutral-7: #{$color-neutral-7};
 
   --color-success: #{$color-success};
   --color-success-dark: #{$color-success-dark};
@@ -141,26 +125,10 @@
 
 .dark,
 html.dark {
-  --color-neutral-1: #{$color-neutral-7};
-  --color-neutral-2: #{$color-neutral-6};
-  --color-neutral-3: #{$color-neutral-5};
-  --color-neutral-4: #{$color-neutral-4};
-  --color-neutral-5: #{$color-neutral-3};
-  --color-neutral-6: #{$color-neutral-2};
-  --color-neutral-7: #{$color-neutral-1};
-
   --color-success: #{$color-success-dark};
   --color-error: #{$color-error-dark};
   --color-warning: #{$color-warning-dark};
   --color-info: #{$color-info-dark};
-
-  --color-primary-lightest: #{$color-primary-darkest};
-  --color-primary-lighter: #{$color-primary-darker};
-  --color-primary-light: #{$color-primary-dark};
-  --color-primary-base: #{$color-primary-base};
-  --color-primary-dark: #{$color-primary-light};
-  --color-primary-darker: #{$color-primary-lighter};
-  --color-primary-darkest: #{$color-primary-lightest};
 
   --color-secondary-1: #{$color-secondary-1};
   --color-secondary-2: #{$color-secondary-2};
