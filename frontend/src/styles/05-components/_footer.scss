@@ -4,10 +4,10 @@
 
 
 .footer {
-	padding: var(--spacing-3xl) var(--spacing-xl);
+	padding: var(--spacing-2xl) var(--spacing-3xl);
 
-	background-color: var(--color-neutral-7);
-	color: var(--color-neutral-2);
+	background-color: var(--bg-footer);
+	color: var(--link-footer);
 
 	&__top {
 		max-width: var(--container-max-width, 80rem);
@@ -18,26 +18,24 @@
 		grid-template-columns: 2fr 1fr 1fr 1fr;
 		gap: var(--spacing-2xl);
 
-		border-bottom: 1px solid var(--color-neutral-6);
+		border-bottom: 1px solid var(--border);
 	}
 
 	&__brand {
 		@include mixins.flex(column, var(--spacing-sm));
 
 		&-name {
-	
-
 			font-family: var(--font-secondary);
 			font-size: var(--font-size-xl);
 			font-weight: var(--font-weight-700);
 
-			color: var(--color-neutral-1);
+			color: $color-neutral-1;
 		}
 
 		&-description {
 			max-width: 320px;
 
-			color: var(--color-neutral-3);
+			color: $color-neutral-3;
 			font-size: var(--font-size-sm);
 			line-height: var(--line-height-relaxed);
 		}
@@ -46,12 +44,10 @@
 	&__links {
 		@include mixins.flex(column, var(--spacing-sm), flex-start, flex-start);
 
-
-
 		&-title {
 			letter-spacing: 0.05em;
-			
-			color: var(--color-neutral-1);
+
+			color: $color-neutral-1;
 			font-family: var(--font-secondary);
 			font-size: var(--font-size-sm);
 			font-weight: var(--font-weight-600);
@@ -64,22 +60,20 @@
 			list-style: none;
 		}
 
-
 		&-item {
 			margin-bottom: var(--spacing-sm);
 		}
-
 
 		&-link {
 			font-size: var(--font-size-sm);
 			text-decoration: none;
 
-			color: var(--color-neutral-3);
+			color: $color-neutral-3 !important;
 			transition: color var(--transition-fast) ease;
 
 			&:hover,
 			&:focus-visible {
-				color: var(--color-neutral-1);
+				color: $color-neutral-1 !important;
 
 				outline: none;
 			}
@@ -93,7 +87,6 @@
 
 		@include mixins.flex(row, var(--spacing-md), space-between, center);
 
-		color: var(--color-neutral-4);
 		font-size: var(--font-size-sm);
 
 		&-links {
@@ -102,12 +95,12 @@
 			&-link {
 				text-decoration: none;
 
-				color: var(--color-neutral-4);
+				color: $color-neutral-3;
 				transition: color var(--transition-fast) ease;
 
 				&:hover,
 				&:focus-visible {
-					color: var(--color-neutral-1);
+					color: $color-neutral-1;
 
 					outline: none;
 				}
@@ -115,12 +108,15 @@
 		}
 	}
 
-	&__copyright {
-		color: var(--color-neutral-4);
+	&__copyright,
+	&__version {
+		color: $color-neutral-4;
 		font-size: var(--font-size-sm);
 	}
 
 	@media (max-width: $breakpoint-sm) {
+		padding: var(--spacing-xl) var(--spacing-lg);
+
 		&__top {
 			max-width: 150px;
 			margin: 0 auto;
