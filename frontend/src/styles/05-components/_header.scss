@@ -10,8 +10,8 @@
   right: 0;
   z-index: 1000;
 
-  background-color: var(--color-primary-lightest);
-  border-bottom: var(--border-thin) solid var(--color-neutral-2);
+  background-color: var(--bg-header);
+  border-bottom: var(--border-thin) solid var(--border);
 
   transition: height var(--transition-base) ease, box-shadow var(--transition-base) ease;
 
@@ -21,9 +21,8 @@
   }
 
   &__container {
-    max-width: var(--container-max-width, 80rem);
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    width: 100%;
+    padding: 0 var(--spacing-3xl);
     height: 100%;
     
     @include mixins.flex(row, 0, space-between, center)
@@ -39,7 +38,7 @@
     }
 
     &:focus-visible {
-      outline: var(--border-medium) solid var(--color-primary-base);
+      outline: var(--border-medium) solid var(--text-important);
       border-radius: var(--radius-md);
     }
 
@@ -47,7 +46,7 @@
       font-family: var(--font-secondary);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-700);
-      color: var(--color-primary-dark);
+      color: var(--card-important);
     }
   }
 
@@ -67,21 +66,21 @@
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-500);
-    color: var(--color-neutral-5);
+    color: var(--card-label);
     text-decoration: none;
     transition: color var(--transition-fast) ease, background-color var(--transition-fast) ease;
 
     &:hover {
-      color: var(--color-primary-base);
-      background-color: var(--color-primary-lighter);
+      color: var(--text-important);
+      background-color: var(--bg-info);
     }
 
     &:focus-visible {
-      outline: var(--border-medium) solid var(--color-primary-base);
+      outline: var(--border-medium) solid var(--text-important);
     }
 
     &--active {
-      color: var(--color-primary-base);
+      color: var(--text-important);
       font-weight: var(--font-weight-600);
     }
   }
@@ -97,8 +96,8 @@
 
     @include mixins.flex-center();
 
-    background-color: var(--color-primary-base);
-    color: var(--color-neutral-1);
+    background-color: var(--button-primary-default);
+    color: var(--text-dark);
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-600);
@@ -112,7 +111,7 @@
     }
 
     &:focus-visible {
-      outline: var(--border-medium) solid var(--color-primary-base);
+      outline: var(--border-medium) solid var(--text-important);
     }
 
     &:active {
@@ -142,7 +141,7 @@
     }
 
     &:focus-visible {
-      outline: var(--border-medium) solid var(--color-primary-base);
+      outline: var(--border-medium) solid var(--text-important);
     }
   }
 
@@ -154,7 +153,7 @@
     display: block;
     position: relative;
     
-    background-color: var(--color-neutral-5);
+    background-color: var(--card-label);
 
     transition: background-color var(--transition-fast) ease, transform var(--transition-fast) ease;
 
@@ -168,7 +167,7 @@
       left: 0;
       
       content: "";
-      background-color: var(--color-neutral-5);
+      background-color: var(--card-label);
       border-radius: 0.125rem;
 
       transition: top var(--transition-fast) ease, transform var(--transition-fast) ease;
@@ -201,7 +200,7 @@
 
   @media (max-width: $breakpoint-md) {
     &__container {
-      padding: 0 var(--spacing-xl);
+      padding: 0 var(--spacing-2xl);
     }
 
     &__nav {
@@ -212,7 +211,7 @@
       left: 0;
       right: 0;
 
-      background-color: var(--color-neutral-1);
+      background-color: var(--bg-header);
       box-shadow: var(--shadow-lg);
       
       transform: translateY(-110%);
@@ -242,7 +241,7 @@
 
   @media (max-width: 350px) {
     &__container{
-      padding: 5px;
+      padding: 0 var(--spacing-md);
     }
   }
 

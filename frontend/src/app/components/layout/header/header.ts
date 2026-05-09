@@ -15,10 +15,7 @@ interface NavItem {
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, FeatherIconDirective],
-  templateUrl: './header.html',
-  host: {
-    class: 'header-host'
-  }
+  templateUrl: './header.html'
 })
 export class Header {
   private readonly document = inject(DOCUMENT);
@@ -30,11 +27,10 @@ export class Header {
 
   readonly navItems: NavItem[] = [
     { label: 'Inicio', path: '/', ariaLabel: 'Ir a Inicio' },
-    { label: 'Peticiones', path: '/peticiones', ariaLabel: 'Ir a Peticiones' },
+    { label: 'Peticiones', path: '/requests', ariaLabel: 'Ir a Peticiones' },
     { label: 'Análisis de Impacto', path: '/analisis-impacto', ariaLabel: 'Ir a Análisis de Impacto' },
     { label: 'Historial', path: '/historial', ariaLabel: 'Ir a Historial' },
-    { label: 'Configuración', path: '/configuracion', ariaLabel: 'Ir a Configuración' },
-    { label: 'Catálogo', path: '/catalogo', ariaLabel: 'Ir a Catálogo' }
+    { label: 'Configuración', path: '/configuracion', ariaLabel: 'Ir a Configuración' }
   ];
 
   constructor() {
