@@ -35,8 +35,16 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
+        return generateToken(userDetails, null);
+    }
+
+    public String generateToken(UserDetails userDetails, String name) {
+        HashMap<String, Object> claims = new HashMap<>();
+        if (name != null && !name.isBlank()) {
+            claims.put("name", name.trim());
+        }
         return Jwts.builder()
-            .setClaims(new HashMap<>())
+            .setClaims(claims)
             .setSubject(userDetails.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis() + expiration))

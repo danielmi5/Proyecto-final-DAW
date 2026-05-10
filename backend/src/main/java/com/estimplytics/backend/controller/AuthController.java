@@ -2,6 +2,7 @@ package com.estimplytics.backend.controller;
 
 import com.estimplytics.backend.dto.TokenRequestDTO;
 import com.estimplytics.backend.dto.TokenResponseDTO;
+import com.estimplytics.backend.repository.UserRepository;
 import com.estimplytics.backend.security.JwtService;
 import com.estimplytics.backend.security.TokenBlacklistService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,11 +30,13 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final TokenBlacklistService tokenBlacklistService;
+    private final UserRepository userRepository;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtService jwtService, TokenBlacklistService tokenBlacklistService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtService jwtService, TokenBlacklistService tokenBlacklistService, UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.tokenBlacklistService = tokenBlacklistService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/token")
@@ -54,7 +57,10 @@ public class AuthController {
         }
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String token = jwtService.generateToken(userDetails);
+        String name = userRepository.findByEmail(request.getEmail())
+                .map(user -> user.getName())
+                .orElse(null);
+        String token = jwtService.generateToken(userDetails, name);
 
         return ResponseEntity.ok(TokenResponseDTO.builder()
                 .accessToken(token)
