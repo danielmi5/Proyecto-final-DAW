@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Button } from '../../shared/button/button';
 import { FormCheckbox } from '../../shared/form-checkbox/form-checkbox';
 import { FormInput } from '../../shared/form-input/form-input';
 import { RegisterEmailAvailabilityService } from '../../../form/services/validadores-asincronos.service';
 import { emailTldValidator, getRegisterFieldMessage, getRegisterFieldState, getRegisterSubmitLabel, passwordMatchValidator, passwordStrengthValidator, type RegisterFieldName, type RegisterFieldState } from '../../../form/validators';
+import { AppStateService, AuthService } from '../../../services';
 
 @Component({
 	selector: 'app-register-form',
@@ -17,6 +18,9 @@ import { emailTldValidator, getRegisterFieldMessage, getRegisterFieldState, getR
 export class RegisterForm {
 	private readonly fb = inject(FormBuilder);
 	private readonly emailAvailability = inject(RegisterEmailAvailabilityService);
+	private readonly auth = inject(AuthService);
+	private readonly appState = inject(AppStateService);
+	private readonly router = inject(Router);
 
 	readonly form = this.fb.nonNullable.group(
 		{
@@ -48,10 +52,24 @@ export class RegisterForm {
 		this.form.markAllAsTouched();
 
 		if (this.form.invalid) {
-			console.log('Formulario incorrecto');
 			return;
 		}
 
-		console.log('Formulario enviado');
+		const { name, email, password } = this.form.getRawValue();
+		this.appState.setLoading(true);
+		this.appState.setError(null);
+
+		this.auth.register({ name, email, password }).subscribe({
+			next: () => {
+				this.appState.setLoading(false);
+				void this.router.navigate(['/login'], {
+					queryParams: { email, registered: 'true' }
+				});
+			},
+			error: () => {
+				this.appState.setLoading(false);
+				this.appState.setError('No se pudo completar el registro');
+			}
+		});
 	}
 }
