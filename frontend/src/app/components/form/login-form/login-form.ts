@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 import { Button } from '../../shared/button/button';
 import { FormInput } from '../../shared/form-input/form-input';
 import { emailTldValidator, getRegisterFieldMessage, getRegisterFieldState, type RegisterFieldName, type RegisterFieldState } from '../../../form/validators';
+import { AppStateService, AuthService } from '../../../services';
 
 @Component({
 	selector: 'app-login-form',
@@ -14,11 +17,29 @@ import { emailTldValidator, getRegisterFieldMessage, getRegisterFieldState, type
 })
 export class LoginForm {
 	private readonly fb = inject(FormBuilder);
+	private readonly auth = inject(AuthService);
+	protected readonly appState = inject(AppStateService);
+	private readonly router = inject(Router);
+	private readonly route = inject(ActivatedRoute);
+
+	readonly registerSuccess = toSignal(
+		this.route.queryParamMap.pipe(map((params) => params.get('registered') === 'true')),
+		{ initialValue: false }
+	);
 
 	readonly form = this.fb.nonNullable.group({
 		email: ['', [Validators.required, emailTldValidator()]],
 		password: ['', [Validators.required]]
 	});
+
+	constructor() {
+		this.route.queryParamMap.pipe(takeUntilDestroyed()).subscribe((params) => {
+			const email = params.get('email');
+			if (email) {
+				this.form.patchValue({ email });
+			}
+		});
+	}
 
 	fieldState(fieldName: RegisterFieldName): RegisterFieldState {
 		return getRegisterFieldState(this.form.get(fieldName));
@@ -36,10 +57,22 @@ export class LoginForm {
 		this.form.markAllAsTouched();
 
 		if (this.form.invalid) {
-			console.log('Formulario incorrecto');
 			return;
 		}
 
-		console.log('Formulario enviado');
+		const { email, password } = this.form.getRawValue();
+		this.appState.setLoading(true);
+		this.appState.setError(null);
+
+		this.auth.login({ email, password }).subscribe({
+			next: () => {
+				this.appState.setLoading(false);
+				void this.router.navigate(['/']);
+			},
+			error: () => {
+				this.appState.setLoading(false);
+				this.appState.setError('Credenciales inválidas');
+			}
+		});
 	}
 }
