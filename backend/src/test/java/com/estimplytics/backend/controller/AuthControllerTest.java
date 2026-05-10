@@ -2,6 +2,8 @@ package com.estimplytics.backend.controller;
 
 import com.estimplytics.backend.dto.TokenRequestDTO;
 import com.estimplytics.backend.dto.TokenResponseDTO;
+import com.estimplytics.backend.entity.Role;
+import com.estimplytics.backend.repository.UserRepository;
 import com.estimplytics.backend.security.JwtService;
 import com.estimplytics.backend.security.TokenBlacklistService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +21,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -39,6 +44,9 @@ class AuthControllerTest {
     @Mock
     private TokenBlacklistService tokenBlacklistService;
 
+    @Mock
+    private UserRepository userRepository;
+
     @InjectMocks
     private AuthController authController;
 
@@ -48,11 +56,20 @@ class AuthControllerTest {
         request.setEmail("user@test.com");
         request.setPassword("secret");
 
-        UserDetails userDetails = User.withUsername("user@test.com").password("pwd").authorities("ROLE_USER").build();
+        UserDetails userDetails = User.withUsername("user@test.com").password("admin123").authorities("ROLE_USER").build();
         Authentication authentication = mock(Authentication.class);
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(authentication);
         when(authentication.getPrincipal()).thenReturn(userDetails);
-        when(jwtService.generateToken(userDetails)).thenReturn("jwt-token");
+        when(userRepository.findByEmail("user@test.com")).thenReturn(Optional.of(
+                com.estimplytics.backend.entity.User.builder()
+                        .id(UUID.randomUUID())
+                        .email("user@test.com")
+                        .name("Daniel")
+                        .role(Role.ANALYST)
+                        .password("admin123")
+                        .build()
+        ));
+        when(jwtService.generateToken(userDetails, "Daniel")).thenReturn("jwt-token");
         when(jwtService.getAccessTokenSeconds()).thenReturn(3600L);
 
         ResponseEntity<TokenResponseDTO> response = authController.login(request);
