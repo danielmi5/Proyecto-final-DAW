@@ -32,8 +32,6 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO:-update}
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRATION: ${JWT_EXPIRATION:-3600000}
-    ports:
-      - '${BACKEND_PORT:-8080}:8080'
 
   frontend:
     build:
