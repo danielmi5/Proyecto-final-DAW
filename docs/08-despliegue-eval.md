@@ -59,3 +59,71 @@ FRONTEND_PORT=
 Finalmente, he tenido en cuenta la persistencia de datos. Los contenedores por diseño son efímeros, por lo que si el contenedor de PostgreSQL se detiene, se perderían todos los usuarios y peticiones. Para solucionarlo, en el archivo [docker-compose.yml](../docker-compose.yml) he definido un volumen de Docker llamado `postgres_data`. Este volumen vincula el directorio interno de PostgreSQL con el disco duro del servidor, asegurando que la información sobreviva a reinicios.
 
 ## Criterio 8 (RA5)
+
+He diseñado la arquitectura de red para que los usuarios accedan exclusivamente al frontend a través del puerto 80 (HTTP). Para proteger la API y solucionar los problemas de rutas cruzadas (CORS), he configurado Nginx no solo como servidor web, sino como proxy inverso.
+
+El archivo donde he implementado esta lógica es:
+-   [nginx.conf](../frontend/nginx.conf): Contiene las reglas de enrutamiento del servidor web.
+
+Dentro de este archivo de configuración, he definido que cualquier petición cuya ruta empiece por `/api/` sea capturada por Nginx y redirigida por la red interna al contenedor del backend a través de su puerto 8080. Así, el backend no necesita estar expuesto a internet. El bloque exacto que gestiona esto es el siguiente:
+
+```nginx
+    # Proxy para el backend
+    location /api/ {
+        set $backend_upstream "http://backend:8080";
+    
+        proxy_pass $backend_upstream;
+        
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+```
+
+Para verificar que toda esta configuración de red funciona correctamente, he realizado tres comprobaciones en la terminal del servidor:
+
+1. Compruebo el estado de los servicios ejecutando el comando en la terminal:
+
+    ```bash
+    docker ps
+    # O también si se hace desde la misma ruta que el docker-compose
+    docker compose ps
+    ```
+    ![Evidencia](./assets/evidencias-despliegue/evidencia-1.png)
+
+    La consola muestra los tres contenedores (db, backend y frontend) activos con el estado UP. Revisando la columna de puertos en la salida de este comando, verifico que el único puerto mapeado al exterior es el 80 del frontend, mientras que los puertos de la base de datos y del backend no tienen redirección al host y solo son accesibles desde la red interna de Docker.
+
+    En desarrollo, el backend y la base de datos están expuestos:
+
+    ![Evidencia](./assets/evidencias-despliegue/evidencia-1-2.png)
+
+2. Verifico la disponibilidad de la web en local ejecutando el comando (o una ruta diferente dependiendo de la real), en localhost, en el puerto 4200: 
+
+    ```bash
+    curl -I http://localhost:4200
+    ```
+    ![Evidencia](./assets/evidencias-despliegue/evidencia-2.png)
+
+    Este comando solicita las cabeceras HTTP de la página principal. La respuesta devuelve un código `200 OK`, lo cual confirma que el contenedor de Nginx está escuchando peticiones y sirviendo la aplicación de Angular correctamente. 
+    
+    En el caso del backend, como no se expone el puerto, no se puede conectar.
+
+3. Por último, valido la comunicación interna entre el frontend y el backend a través del proxy. Para ello, he entrado al contenedor del frontend y he ejecutado este comando curl con dominio backend (configurado en nginx): 
+
+    ```bash
+    docker exec -it estimplytics-frontend sh
+    \ curl -I http://backend:8080
+    ```
+    ![Evidencia](./assets/evidencias-despliegue/evidencia-3.png)
+    
+    Como esta ruta en la API está protegida y requiere un token de sesión que no estoy enviando en el curl, la salida devuelve un error `403 Forbidden`. Esto demuestra que Nginx ha interceptado la petición y la ha enrutado sin problemas hacia el backend de Spring Boot, validando la conexión entre los dos contenedores.
+
+    También he comprobado si los 3 contenedores pertenecían en la misma red mediante este comando:
+
+    ```bash
+    docker network inspect proyecto-final-daw_default
+    ```
+
+    ![Evidencia](./assets/evidencias-despliegue/evidencia-4.png)
