@@ -1,0 +1,10 @@
+<article class="stat-card">
+  <div class="stat-card__header">
+    <span>{{ stat().label }}</span>
+    <strong>{{ stat().value }}%</strong>
+  </div>
+
+  <div class="stat-card__bar">
+    <span [style.width.%]="progress()" [style.background]="stat().color"></span>
+  </div>
+</article>

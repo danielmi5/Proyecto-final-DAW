@@ -1,0 +1,83 @@
+@use "../../01-tools/mixins" as mixins;
+
+.kpi-card {
+    padding: var(--spacing-lg);
+
+    border-radius: 1.2rem;
+    background: var(--bg-cards);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+
+    transition: transform var(--transition-base) ease, box-shadow var(--transition-base) ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    &__top {
+        @include mixins.flex(row, var(--spacing-sm), space-between, center);
+        margin-bottom: var(--spacing-md);
+    }
+
+    &__icon {
+        flex-shrink: 0;
+
+        &--requests {
+            color: var(--color-category-5);
+        }
+
+        &--analysis {
+            color: var(--color-category-4);
+        }
+
+        &--documents {
+            color: var(--color-category-3);
+        }
+    }
+
+    &__change {
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-700);
+
+        &--positive {
+            color: var(--color-success);
+        }
+
+        &--negative {
+            color: var(--color-error);
+        }
+
+        &--neutral {
+            color: var(--text-important);
+        }
+    }
+
+    &__value {
+        margin-bottom: var(--spacing-xs);
+
+        color: var(--text);
+
+        font-family: var(--font-secondary);
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-700);
+    }
+
+    &__label {
+        margin: 0 0 var(--spacing-xs);
+
+        color: var(--text);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-600);
+    }
+
+    &__description {
+        margin: 0;
+
+        color: var(--card-label);
+
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-relaxed);
+    }
+}

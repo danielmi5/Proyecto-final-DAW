@@ -1,0 +1,145 @@
+@use "../../00-settings/variables" as *;
+@use "../../01-tools/mixins" as mixins;
+
+.requests {
+    padding: 0;
+
+    &__header {
+        @include mixins.flex(column, var(--spacing-xs), flex-start, stretch);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    &__heading {
+        @include mixins.flex(row, var(--spacing-lg), space-between, center);
+    }
+
+    &__title {
+        margin: 0;
+        color: var(--text);
+        font-family: var(--font-secondary);
+        font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+        font-weight: var(--font-weight-700);
+    }
+
+    &__subtitle {
+        margin: 0;
+        @include mixins.typography(paragraph, var(--card-label));
+    }
+
+    &__link {
+        @include mixins.flex(row, var(--spacing-sm), flex-start, center);
+        color: var(--text-important);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-600);
+        text-decoration: none;
+        line-height: 1;
+
+        .feather-icon,
+        .feather-icon svg {
+            display: block;
+        }
+    }
+
+    &__table-wrap {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 1.35rem;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            background: var(--bg-cards);
+        }
+
+        th {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            color: var(--card-label);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-700);
+            letter-spacing: 0.07em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            font-size: var(--font-size-sm);
+            text-align: center;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bg-cards);
+        }
+    }
+
+    &__table &__ticket {
+        color: var(--text-important);
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-700);
+    }
+
+    &__table &__title {
+        max-width: 22rem;
+        color: var(--text);
+        font-weight: var(--font-weight-500);
+    }
+
+    &__table &__source {
+        display: inline-flex;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-full);
+        background: var(--bg);
+        color: var(--card-label);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-600);
+    }
+
+    &__table &__date {
+        color: var(--card-label);
+    }
+
+    &__table &__priority {
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-700);
+
+        &--high {
+            color: var(--color-category-4);
+        }
+
+        &--medium {
+            color: var(--color-category-3);
+        }
+
+        &--low {
+            color: var(--color-category-1);
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &__table-wrap {
+            border-radius: 1rem;
+        }
+
+        &__table {
+            min-width: 44rem;
+        }
+    }
+}

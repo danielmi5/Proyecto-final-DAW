@@ -1,0 +1,262 @@
+@use "../00-settings/variables" as *;
+@use "../01-tools/mixins" as mixins;
+
+.header {
+  height: 5rem;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  background-color: var(--bg-header);
+  border-bottom: var(--border-thin) solid var(--border);
+
+  transition: height var(--transition-base) ease, box-shadow var(--transition-base) ease;
+
+  &--scrolled {
+    height: 4rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  &__container {
+    width: 100%;
+    padding: 0 var(--spacing-3xl);
+    height: 100%;
+    
+    @include mixins.flex(row, 0, space-between, center)
+  }
+
+  &__logo {
+    @include mixins.flex(row, var(--spacing-sm), flex-start, center);
+    text-decoration: none;
+    transition: opacity var(--transition-fast) ease;
+
+    &:hover {
+      opacity: 0.82;
+    }
+
+    &:focus-visible {
+      outline: var(--border-medium) solid var(--text-important);
+      border-radius: var(--radius-md);
+    }
+
+    &-content {
+      font-family: var(--font-secondary);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-700);
+      color: var(--card-important);
+    }
+  }
+
+  &__nav-list {
+    @include mixins.flex(row, var(--spacing-xs), flex-start, center);
+    list-style: none;
+  }
+
+  &__nav-link {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+
+    display: flex;
+    align-items: center;
+    
+    
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-500);
+    color: var(--card-label);
+    text-decoration: none;
+    transition: color var(--transition-fast) ease, background-color var(--transition-fast) ease;
+
+    &:hover {
+      color: var(--text-important);
+      background-color: var(--bg-info);
+    }
+
+    &:focus-visible {
+      outline: var(--border-medium) solid var(--text-important);
+    }
+
+    &--active {
+      color: var(--text-important);
+      font-weight: var(--font-weight-600);
+    }
+  }
+
+  &__actions {
+    @include mixins.flex(row, var(--spacing-md), flex-start, center);
+  }
+
+  &__avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+
+    @include mixins.flex-center();
+
+    background-color: var(--button-primary-default);
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-600);
+    border: none;
+
+    cursor: pointer;
+    transition: transform var(--transition-fast) ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+
+    &:focus-visible {
+      outline: var(--border-medium) solid var(--text-important);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  &__menu {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border-radius: var(--radius-md);
+    
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    background: none;
+
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast) ease;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus-visible {
+      outline: var(--border-medium) solid var(--text-important);
+    }
+  }
+
+  &__menu-icon {
+    width: 1.375rem;
+    height: var(--border-medium);
+    border-radius: 0.125rem;
+
+    display: block;
+    position: relative;
+    
+    background-color: var(--card-label);
+
+    transition: background-color var(--transition-fast) ease, transform var(--transition-fast) ease;
+
+    &::before,
+    &::after {
+      width: 100%;
+      height: var(--border-medium);
+
+      display: block;
+      position: absolute;
+      left: 0;
+      
+      content: "";
+      background-color: var(--card-label);
+      border-radius: 0.125rem;
+
+      transition: top var(--transition-fast) ease, transform var(--transition-fast) ease;
+    }
+
+    &::before {
+      top: -0.4375rem;
+    }
+
+    &::after {
+      top: 0.4375rem;
+    }
+
+    &--open {
+      background-color: transparent;
+
+      &::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+
+
+  @media (max-width: $breakpoint-md) {
+    &__container {
+      padding: 0 var(--spacing-2xl);
+    }
+
+    &__nav {
+      padding: var(--spacing-md);
+
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+
+      background-color: var(--bg-header);
+      box-shadow: var(--shadow-lg);
+      
+      transform: translateY(-110%);
+      opacity: 0;
+
+      &--open {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    &__nav-list {
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    &__nav-link {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-lg);
+      font-size: var(--font-size-base);
+    }
+
+    &__menu {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 350px) {
+    &__container{
+      padding: 0 var(--spacing-md);
+    }
+  }
+
+  @media (max-width: 280px) {
+    height: auto;
+    min-height: 5.3em;
+
+    &--scrolled {
+      height: auto;
+      min-height: 5.3rem;
+    }
+
+    &__container{
+      flex-direction: column;
+    }
+  }
+}
+

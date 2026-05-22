@@ -1,0 +1,28 @@
+@use "../00-settings/variables" as *;
+
+@use "./home/welcome";
+@use "./home/kpis";
+@use "./home/requests";
+@use "./home/activity";
+@use "./home/stats";
+
+.home__content {
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+
+  @media (max-width: $breakpoint-lg) {
+    padding: var(--spacing-2xl) var(--spacing-2xl);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: var(--spacing-xl) var(--spacing-lg);
+    gap: var(--spacing-xl);
+  }
+
+  @media (max-width: 420px) {
+    padding-bottom: var(--spacing-2xl);
+  }
+}

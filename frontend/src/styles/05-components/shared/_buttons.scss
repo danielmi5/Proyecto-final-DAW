@@ -1,0 +1,96 @@
+@use "../../01-tools/mixins" as mixins;
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-xs);
+	padding: var(--spacing-md) var(--spacing-lg);
+	border-radius: var(--radius-md);
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-700);
+	text-decoration: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+
+	&--sm {
+		padding: var(--spacing-xs) var(--spacing-md);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-600);
+	}
+
+	&--md {
+		padding: var(--spacing-md) var(--spacing-lg);
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-700);
+	}
+
+	&--lg {
+		padding: var(--spacing-lg) var(--spacing-xl);
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-700);
+	}
+
+	&--full-width {
+		width: 100%;
+	}
+
+	&--primary {
+		background: var(--button-primary-default);
+		border-color: var(--button-primary-default);
+		color: var(--text-dark);
+
+		cursor: pointer;
+		transition: background var(--transition-fast) ease, border-color var(--transition-fast) ease;
+
+		&:hover {
+			background: var(--button-primary-hover);
+			border-color: var(--button-primary-hover);
+		}
+
+		&:active {
+			background: var(--button-primary-clicked);
+			border-color: var(--button-primary-clicked);
+		}
+	}
+
+	&--secondary {
+		background: var(--button-secondary-default);
+		border-color: var(--border-button-secondary);
+		color: var(--text-important);
+
+		cursor: pointer;
+		transition: background var(--transition-fast) ease, border-color var(--transition-fast) ease;
+
+		&:hover {
+			background: var(--button-secondary-hover);
+		}
+
+		&:active {
+			background: var(--button-secondary-clicked);
+		}
+	}
+
+	&--light {
+		background: var(--button-secondary-default);
+		color: var(--text-important);
+
+		cursor: pointer;
+		transition: background var(--transition-fast) ease;
+
+		&:hover {
+			background: var(--button-secondary-hover);
+		}
+
+		&:active {
+			background: var(--button-secondary-clicked);
+		}
+	}
+
+	&--ghost {
+		background: var(--button-secondary-default);
+		border-color: var(--border-button);
+		color: var(--text-dark);
+		@include mixins.disabled();
+	}
+}

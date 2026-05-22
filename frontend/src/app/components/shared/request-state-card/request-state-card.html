@@ -1,0 +1,25 @@
+<figure class="visual-card">
+	<span class="visual-card__orb visual-card__orb--one"></span>
+	<span class="visual-card__orb visual-card__orb--two"></span>
+	<article class="visual-card__panel">
+		<header class="visual-card__header">
+			<app-badge baseClass="visual-card__badge">{{ badge() }}</app-badge>
+			<span class="visual-card__status">{{ status() || '' }}</span>
+		</header>
+
+		<section class="visual-card__score">
+			<span>{{ scoreLabel() }}</span>
+			<strong>{{ scoreValue() }}</strong>
+		</section>
+
+		<section class="visual-card__timeline">
+			@for (state of timelineStates(); track state) {
+				<span class="{{ state }}"></span>
+			}
+		</section>
+
+		<figcaption class="visual-card__insight">
+			<p>{{ insight() || '' }}</p>
+		</figcaption>
+	</article>
+</figure>

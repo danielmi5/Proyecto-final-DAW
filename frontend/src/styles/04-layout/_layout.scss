@@ -1,0 +1,45 @@
+@use "../00-settings/variables" as *;
+@use "../01-tools/mixins" as mixins;
+
+.o-container {
+  width: min(100% - (var(--spacing-lg) * 2), var(--container-max-width));
+  margin-inline: auto;
+}
+
+.o-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.o-grid--sm {
+  gap: var(--spacing-md);
+}
+
+.o-grid--lg {
+  gap: var(--spacing-xl);
+}
+
+.o-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.o-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.o-grid--auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.o-container--section {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 var(--spacing-xl);
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
