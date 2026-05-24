@@ -17,8 +17,5 @@ jobs:
         with:
           token: ${{ secrets.DO_TOKEN }}
 
-      - name: Deploy Backend
-        run: doctl apps create-deployment 5684a7b2-30ae-46a8-aec8-251a6755292f --force-rebuild
-
-      - name: Deploy Frontend
-        run: doctl apps create-deployment 7e42274f-4366-417a-b620-3328e428f00e --force-rebuild
+      - name: Deploy App
+        run: doctl apps create-deployment b263fe14-a0b6-4632-934f-e886cde9a460 --force-rebuild
